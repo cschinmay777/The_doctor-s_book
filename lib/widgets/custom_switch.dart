@@ -1,6 +1,9 @@
-import 'package:chinmay_s_application1/core/app_export.dart';
+// import 'package:chinmay_s_application1/core/app_export.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
+// import 'package:flutter_switch/flutter_switch.dart';
+
+import '../core/constants/color_constants.dart';
+import '../core/utils/size_utils.dart';
 
 class CustomSwitch extends StatelessWidget {
   CustomSwitch({this.alignment, this.margin, this.value, this.onChanged});

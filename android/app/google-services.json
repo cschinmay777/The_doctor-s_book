@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "659332493356",
+    "project_id": "doctor-s-book-a950f",
+    "storage_bucket": "doctor-s-book-a950f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659332493356:android:82a7ca7b685841e928e189",
+        "android_client_info": {
+          "package_name": "com.example.doctor_book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659332493356-hjh1k938j385cpekggbv4eqdqbra8lr8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiSpEfsGhsbE7OvCxYIh8ci2OBrrLBsa4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659332493356-hjh1k938j385cpekggbv4eqdqbra8lr8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
