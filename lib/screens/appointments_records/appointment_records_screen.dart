@@ -18,7 +18,6 @@ import 'controllers/appointment_page_controller.dart';
 class AppointmentPageScreen extends GetWidget<AppointmentPageController> {
   @override
   Widget build(BuildContext context) {
-    // controller.getUserData();
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.gray900,
