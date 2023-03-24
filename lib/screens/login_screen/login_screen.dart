@@ -118,15 +118,22 @@ class Login_Screen extends GetWidget<LoginController> {
                             variant: ButtonVariant.FillCyan600),
                         GestureDetector(
                           onTap: () {
-                            Get.toNamed(AppRoutes.forgotpasswordScreen);
+                            controller.login(email: controller.emailController.value.toString(), password: controller.passwordController.value.toString());
+                            //Get.toNamed(AppRoutes.forgotpasswordScreen);
                           },
                           child: Padding(
                               padding: getPadding(top: 27),
-                              child: Text("Forgot Password",
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.left,
-                                  style: AppStyle.txtUrbanistSemiBold16
-                                      .copyWith(letterSpacing: 0.20))),
+                              child: TextButton(
+                                onPressed: () {
+                                  Get.toNamed(AppRoutes.forgotpasswordScreen);
+                                },
+                                  child: Text("Forgot Password",
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.left,
+                                      style: AppStyle.txtUrbanistSemiBold16
+                                          .copyWith(letterSpacing: 0.20)),
+                              ),
+                          ),
                         ),
                         Padding(
                             padding: getPadding(left: 10, top: 58, right: 10),
@@ -159,39 +166,39 @@ class Login_Screen extends GetWidget<LoginController> {
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Card(
-                                      clipBehavior: Clip.antiAlias,
-                                      elevation: 0,
-                                      margin: EdgeInsets.all(0),
-                                      color: ColorConstant.blueGray90001,
-                                      shape: RoundedRectangleBorder(
-                                          side: BorderSide(
-                                              color: ColorConstant.gray800,
-                                              width: getHorizontalSize(1.00)),
-                                          borderRadius: BorderRadiusStyle
-                                              .roundedBorder16),
-                                      child: Container(
-                                          height: getVerticalSize(60.00),
-                                          width: getHorizontalSize(88.00),
-                                          padding: getPadding(
-                                              left: 32,
-                                              top: 18,
-                                              right: 32,
-                                              bottom: 18),
-                                          decoration: AppDecoration
-                                              .outlineGray800
-                                              .copyWith(
-                                                  borderRadius:
-                                                      BorderRadiusStyle
-                                                          .roundedBorder16),
-                                          child: Stack(children: [
-                                            CustomImageView(
-                                                imagePath: ImageConstant
-                                                    .imgAutolayouthorizontalWhiteA700,
-                                                height: getSize(24.00),
-                                                width: getSize(24.00),
-                                                alignment: Alignment.center)
-                                          ]))),
+                                  // Card(
+                                  //     clipBehavior: Clip.antiAlias,
+                                  //     elevation: 0,
+                                  //     margin: EdgeInsets.all(0),
+                                  //     color: ColorConstant.blueGray90001,
+                                  //     shape: RoundedRectangleBorder(
+                                  //         side: BorderSide(
+                                  //             color: ColorConstant.gray800,
+                                  //             width: getHorizontalSize(1.00)),
+                                  //         borderRadius: BorderRadiusStyle
+                                  //             .roundedBorder16),
+                                  //     child: Container(
+                                  //         height: getVerticalSize(60.00),
+                                  //         width: getHorizontalSize(88.00),
+                                  //         padding: getPadding(
+                                  //             left: 32,
+                                  //             top: 18,
+                                  //             right: 32,
+                                  //             bottom: 18),
+                                  //         decoration: AppDecoration
+                                  //             .outlineGray800
+                                  //             .copyWith(
+                                  //                 borderRadius:
+                                  //                     BorderRadiusStyle
+                                  //                         .roundedBorder16),
+                                  //         child: Stack(children: [
+                                  //           CustomImageView(
+                                  //               imagePath: ImageConstant
+                                  //                   .imgAutolayouthorizontalWhiteA700,
+                                  //               height: getSize(24.00),
+                                  //               width: getSize(24.00),
+                                  //               alignment: Alignment.center)
+                                  //         ]))),
                                   Card(
                                       clipBehavior: Clip.antiAlias,
                                       elevation: 0,
@@ -225,41 +232,42 @@ class Login_Screen extends GetWidget<LoginController> {
                                                 width: getHorizontalSize(23.00),
                                                 alignment: Alignment.center,
                                                 onTap: () {
-                                                  onTapImgGoogle();
+                                                  print("Hello");
+                                                  controller.loginWithGoogle();
                                                 })
                                           ]))),
-                                  Card(
-                                      clipBehavior: Clip.antiAlias,
-                                      elevation: 0,
-                                      margin: getMargin(left: 20),
-                                      color: ColorConstant.blueGray90001,
-                                      shape: RoundedRectangleBorder(
-                                          side: BorderSide(
-                                              color: ColorConstant.gray800,
-                                              width: getHorizontalSize(1.00)),
-                                          borderRadius: BorderRadiusStyle
-                                              .roundedBorder16),
-                                      child: Container(
-                                          height: getVerticalSize(60.00),
-                                          width: getHorizontalSize(88.00),
-                                          padding: getPadding(
-                                              left: 32,
-                                              top: 18,
-                                              right: 32,
-                                              bottom: 18),
-                                          decoration: AppDecoration
-                                              .outlineGray800
-                                              .copyWith(
-                                                  borderRadius:
-                                                      BorderRadiusStyle
-                                                          .roundedBorder16),
-                                          child: Stack(children: [
-                                            CustomImageView(
-                                                svgPath: ImageConstant.imgFrame,
-                                                height: getSize(24.00),
-                                                width: getSize(24.00),
-                                                alignment: Alignment.center)
-                                          ])))
+                                  // Card(
+                                  //     clipBehavior: Clip.antiAlias,
+                                  //     elevation: 0,
+                                  //     margin: getMargin(left: 20),
+                                  //     color: ColorConstant.blueGray90001,
+                                  //     shape: RoundedRectangleBorder(
+                                  //         side: BorderSide(
+                                  //             color: ColorConstant.gray800,
+                                  //             width: getHorizontalSize(1.00)),
+                                  //         borderRadius: BorderRadiusStyle
+                                  //             .roundedBorder16),
+                                  //     child: Container(
+                                  //         height: getVerticalSize(60.00),
+                                  //         width: getHorizontalSize(88.00),
+                                  //         padding: getPadding(
+                                  //             left: 32,
+                                  //             top: 18,
+                                  //             right: 32,
+                                  //             bottom: 18),
+                                  //         decoration: AppDecoration
+                                  //             .outlineGray800
+                                  //             .copyWith(
+                                  //                 borderRadius:
+                                  //                     BorderRadiusStyle
+                                  //                         .roundedBorder16),
+                                  //         child: Stack(children: [
+                                  //           CustomImageView(
+                                  //               svgPath: ImageConstant.imgFrame,
+                                  //               height: getSize(24.00),
+                                  //               width: getSize(24.00),
+                                  //               alignment: Alignment.center)
+                                  //         ])))
                                 ])),
                         Padding(
                             padding: getPadding(top: 49, bottom: 5),
@@ -296,15 +304,4 @@ class Login_Screen extends GetWidget<LoginController> {
     Get.back();
   }
 
-  onTapImgGoogle() async {
-    // await GoogleAuthHelper().googleSignInProcess().then((googleUser) {
-    //   if (googleUser != null) {
-    //     //TODO Actions to be performed after signin
-    //   } else {
-    //     Get.snackbar('Error', 'user data is empty');
-    //   }
-    // }).catchError((onError) {
-    //   Get.snackbar('Error', onError.toString());
-    // });
-  }
 }

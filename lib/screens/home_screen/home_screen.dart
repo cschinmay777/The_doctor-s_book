@@ -1,3 +1,5 @@
+//import 'dart:js';
+
 import 'package:doctor_book/Routes/app_routes.dart';
 import 'package:doctor_book/screens/home_screen/controllers/home_screen_controller.dart';
 import 'package:doctor_book/screens/home_screen/models/homeScreenItemModel.dart';
@@ -14,37 +16,35 @@ import '../../theme/app_decoration.dart';
 import '../../widgets/app_bar/appbar_image.dart';
 import '../../widgets/app_bar/appbar_title.dart';
 import '../../widgets/app_bar/custom_app_bar.dart';
+import '../login_screen/controllers/login_controller.dart';
 
 class HomeScreen extends GetWidget<HomeScreenController> {
+  //Size size = MediaQuery.of(context as BuildContext).size;
+  Size screenSize = WidgetsBinding.instance.window.physicalSize;
+  //double width = screenSize.width;
+  //double height = screenSize.height;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.gray900,
-        // appBar: CustomAppBar(
-        //     height: getVerticalSize(56.00),
-        //     leadingWidth: 52,
-        //     leading: AppbarImage(
-        //         height: getSize(28.00),
-        //         width: getSize(28.00),
-        //         svgPath: ImageConstant.imgArrowleft,
-        //         margin: getMargin(left: 24, top: 10, bottom: 15),
-        //         onTap: onTapArrowleft6),
-        //     title:
-        //         AppbarTitle(text: "DashBoard", margin: getMargin(left: 16)),
-        //     actions: [
-        //       AppbarImage(
-        //           height: getSize(28.00),
-        //           width: getSize(28.00),
-        //           svgPath: ImageConstant.imgMenu1,
-        //           margin: getMargin(left: 24, top: 10, bottom: 15)),
-        //       AppbarImage(
-        //           height: getSize(28.00),
-        //           width: getSize(28.00),
-        //           svgPath: ImageConstant.imgGrid,
-        //           margin:
-        //               getMargin(left: 20, top: 10, right: 24, bottom: 15))
-        //     ]),
+        appBar: CustomAppBar(
+          height: screenSize.height*0.05,
+          //leadingWidth: screenSize.width*0.02,
+          leadingWidth: 52,
+          leading: AppbarImage(
+            height: screenSize.height*0.03,
+            width: screenSize.width*0.03,
+            svgPath: ImageConstant.imgArrowleft,
+            margin: getMargin(left: 24, top: 10, bottom: 15),
+            onTap: (){
+              LoginController controller=LoginController();
+              controller.signout();
+            },
+          ),
+            title: AppbarTitle(text: "DashBoard", margin: getMargin(left: screenSize.width*0.15)),
+        ),
         body: SingleChildScrollView(
           child: Container(
             margin: getMargin(left: 24, top: 26, right: 24),
@@ -77,7 +77,7 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                               style: TextStyle(
                                   fontFamily: 'Urbanist',
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 24,
+                                  fontSize: screenSize.width*0.03,
                                   color: Colors.white),
                             ),
                           ),
@@ -88,7 +88,7 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   fontFamily: 'Urbanist',
-                                  fontSize: 48,
+                                  fontSize: screenSize.width*0.05,
                                   color: ColorConstant.cyan60001,
                                   fontWeight: FontWeight.w500),
                             ),
@@ -101,7 +101,7 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                               style: TextStyle(
                                   fontFamily: 'Urbanist',
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 24,
+                                  fontSize: screenSize.width*0.02,
                                   color: Colors.white),
                             ),
                           ),
@@ -131,7 +131,9 @@ class HomeScreen extends GetWidget<HomeScreenController> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Get.toNamed(AppRoutes.addnewrecord);
+                          },
                           child: HomeScreenCardWidget(
                             HomeScreenItemModel(
                                 title: "Add New Record",

@@ -10,10 +10,12 @@ import '../../widgets/app_bar/appbar_title.dart';
 import '../../widgets/app_bar/custom_app_bar.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_image_view.dart';
+import '../../widgets/custom_text_form_field.dart';
 import 'controllers/forgot_password_controller.dart';
 import 'models/listuser_item_model.dart';
 
 class ForgotPasswordScreen extends GetWidget<ForgotPasswordController> {
+  // TextEditingController emailcontroller= TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -51,26 +53,47 @@ class ForgotPasswordScreen extends GetWidget<ForgotPasswordController> {
                                 textAlign: TextAlign.left,
                                 style: AppStyle.txtUrbanistRegular16WhiteA700
                                     .copyWith(letterSpacing: 0.20))),
-                        Padding(
-                            padding: getPadding(top: 25),
-                            child: Obx(() => ListView.builder(
-                                physics: BouncingScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: controller.forgotPasswordModelObj
-                                    .value.listuserItemList.length,
-                                itemBuilder: (context, index) {
-                                  ListuserItemModel model = controller
-                                      .forgotPasswordModelObj
-                                      .value
-                                      .listuserItemList[index];
-                                  return ListuserItemWidget(model);
-                                }))),
+                        CustomTextFormField(
+                            width: 380,
+                            focusNode: FocusNode(),
+                            controller: controller.emailController,
+                            hintText: "email",
+                            margin: getMargin(top: 57),
+                            padding: TextFormFieldPadding.PaddingT21,
+                            fontStyle: TextFormFieldFontStyle.UrbanistRegular14,
+                            prefix: Container(
+                                margin: getMargin(
+                                    left: 20, top: 20, right: 12, bottom: 20),
+                                child: CustomImageView(
+                                    svgPath: ImageConstant.imgCheckmark)),
+                            prefixConstraints: BoxConstraints(
+                                minWidth: getSize(20.00),
+                                minHeight: getSize(20.00))),
+                        // Padding(
+                        //     padding: getPadding(top: 25),
+                        //     child: Obx(() => ListView.builder(
+                        //         physics: BouncingScrollPhysics(),
+                        //         shrinkWrap: true,
+                        //         itemCount: controller.forgotPasswordModelObj
+                        //             .value.listuserItemList.length,
+                        //         itemBuilder: (context, index) {
+                        //           ListuserItemModel model = controller.PasswordResetEmail(email);
+                        //           //controller
+                        //             //  .forgotPasswordModelObj
+                        //           //    .value
+                        //            //   .listuserItemList[index];
+                        //           return ListuserItemWidget(model);
+                        //         }))),
                         CustomButton(
                             height: 55,
                             width: 380,
                             text: "Continue",
                             margin: getMargin(top: 39),
-                            variant: ButtonVariant.OutlineGreenA7003f)
+                            variant: ButtonVariant.OutlineGreenA7003f,
+                            onTap: (){
+                              controller.PasswordResetEmail(controller.emailController.text);
+                            },
+                        )
                       ])),
             )));
   }

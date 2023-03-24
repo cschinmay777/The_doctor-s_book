@@ -24,7 +24,7 @@ class AppbarTitle extends StatelessWidget {
         child: Text(
           text,
           overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.left,
+          textAlign: TextAlign.center,
           style: AppStyle.txtUrbanistRomanBold24.copyWith(
             color: ColorConstant.whiteA700,
           ),
