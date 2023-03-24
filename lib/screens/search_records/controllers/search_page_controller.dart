@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SearchPageController extends GetxController {
-  var searchBarController = TextEditingController().obs;
+  var searchBarText = ''.obs;
 
   var searchList = <Patient>[].obs;
 
@@ -19,7 +19,6 @@ class SearchPageController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    searchBarController.value.dispose();
   }
 
   Future getAllPatientDetails() async {
@@ -32,5 +31,16 @@ class SearchPageController extends GetxController {
       return patientList;
     }
     log('No data');
+  }
+
+  List<Patient> searchPatient() {
+    if (searchBarText.value == '') {
+      return searchList;
+    } else {
+      return searchList
+          .where(
+              (element) => element.name!.toLowerCase().contains(searchBarText.value.toLowerCase()))
+          .toList();
+    }
   }
 }
