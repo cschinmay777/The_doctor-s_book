@@ -1,6 +1,7 @@
 //import 'dart:html';
 //import 'dart:html';
 
+import 'package:doctor_book/screens/appointments_records/models/doctormodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -27,12 +28,13 @@ class LoginController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    emailController.dispose();
-    passwordController.dispose();
+    emailController.clear();
+    passwordController.clear();
   }
-  void login({required String email, required String password}) async {
+
+  void login() async {
     final user = await _auth.signInWithEmailAndPassword(
-        email: email, password: password);
+        email: emailController.text, password: passwordController.text);
     loggedinuser = _auth.currentUser;
     try {
       if (user != null) {
@@ -48,11 +50,12 @@ class LoginController extends GetxController {
       );
     }
   }
+
   loginWithGoogle() async {
     try {
       GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
       GoogleSignInAuthentication? googleSignInAuthentication =
-      await googleSignInAccount?.authentication;
+          await googleSignInAccount?.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication?.accessToken,
         idToken: googleSignInAuthentication?.idToken,
@@ -73,6 +76,7 @@ class LoginController extends GetxController {
       );
     }
   }
+
   // onTapImgGoogle() async {
   //   // await GoogleAuthHelper().googleSignInProcess().then((googleUser) {
   //   //   if (googleUser != null) {

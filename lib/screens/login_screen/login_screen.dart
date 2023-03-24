@@ -12,7 +12,8 @@ import '../../widgets/custom_image_view.dart';
 import '../../widgets/custom_text_form_field.dart';
 import 'controllers/login_controller.dart';
 
-class Login_Screen extends GetWidget<LoginController> {
+class Login_Screen extends StatelessWidget {
+  var controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -109,7 +110,7 @@ class Login_Screen extends GetWidget<LoginController> {
                                 }))),
                         CustomButton(
                             onTap: () {
-                              Get.offNamed(AppRoutes.homescreen);
+                              controller.login();
                             },
                             height: 55,
                             width: 380,
@@ -118,21 +119,20 @@ class Login_Screen extends GetWidget<LoginController> {
                             variant: ButtonVariant.FillCyan600),
                         GestureDetector(
                           onTap: () {
-                            controller.login(email: controller.emailController.value.toString(), password: controller.passwordController.value.toString());
-                            //Get.toNamed(AppRoutes.forgotpasswordScreen);
+                            Get.toNamed(AppRoutes.forgotpasswordScreen);
                           },
                           child: Padding(
-                              padding: getPadding(top: 27),
-                              child: TextButton(
-                                onPressed: () {
-                                  Get.toNamed(AppRoutes.forgotpasswordScreen);
-                                },
-                                  child: Text("Forgot Password",
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.left,
-                                      style: AppStyle.txtUrbanistSemiBold16
-                                          .copyWith(letterSpacing: 0.20)),
-                              ),
+                            padding: getPadding(top: 27),
+                            child: TextButton(
+                              onPressed: () {
+                                Get.toNamed(AppRoutes.forgotpasswordScreen);
+                              },
+                              child: Text("Forgot Password",
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  style: AppStyle.txtUrbanistSemiBold16
+                                      .copyWith(letterSpacing: 0.20)),
+                            ),
                           ),
                         ),
                         Padding(
@@ -303,5 +303,4 @@ class Login_Screen extends GetWidget<LoginController> {
   onTapImgArrowleft() {
     Get.back();
   }
-
 }

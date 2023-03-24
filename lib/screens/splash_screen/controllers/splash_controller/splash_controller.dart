@@ -7,7 +7,7 @@ class Splash_Screen_Controller extends GetxController {
   void onReady() {
     super.onReady();
     Future.delayed(const Duration(milliseconds: 3000), () {
-      Get.offNamed(AppRoutes.welcomeScreen);
+      Get.offNamed(AppRoutes.decision);
     });
   }
 
