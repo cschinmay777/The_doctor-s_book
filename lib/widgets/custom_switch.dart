@@ -29,22 +29,23 @@ class CustomSwitch extends StatelessWidget {
   _buildSwitchWidget() {
     return Padding(
       padding: margin ?? EdgeInsets.zero,
-      child: FlutterSwitch(
-        value: value ?? false,
-        height: getHorizontalSize(24),
-        width: getHorizontalSize(44),
-        toggleSize: 24,
-        borderRadius: getHorizontalSize(
-          12.00,
-        ),
-        activeColor: ColorConstant.cyan60001,
-        activeToggleColor: ColorConstant.whiteA700,
-        inactiveColor: ColorConstant.blueGray90001,
-        inactiveToggleColor: ColorConstant.whiteA700,
-        onToggle: (value) {
-          onChanged!(value);
-        },
-      ),
+      child: const Placeholder(),
+      // child: FlutterSwitch(
+      //   value: value ?? false,
+      //   height: getHorizontalSize(24),
+      //   width: getHorizontalSize(44),
+      //   toggleSize: 24,
+      //   borderRadius: getHorizontalSize(
+      //     12.00,
+      //   ),
+      //   activeColor: ColorConstant.cyan60001,
+      //   activeToggleColor: ColorConstant.whiteA700,
+      //   inactiveColor: ColorConstant.blueGray90001,
+      //   inactiveToggleColor: ColorConstant.whiteA700,
+      //   onToggle: (value) {
+      //     onChanged!(value);
+      //   },
+      // ),
     );
   }
 }
