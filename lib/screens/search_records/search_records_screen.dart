@@ -1,5 +1,3 @@
-import 'package:doctor_book/screens/search_records/widgets/listrectanglefour2_item_widget.dart';
-import 'package:doctor_book/screens/search_records/widgets/listsizemediumtypefilled_item_widget.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +11,10 @@ import '../../widgets/custom_image_view.dart';
 import '../../widgets/custom_search_view.dart';
 import '../home_screen/home_screen.dart';
 import 'controllers/search_page_controller.dart';
-import 'models/listrectanglefour2_item_model.dart';
-import 'models/listsizemediumfilled_item_model.dart';
+import 'widgets/patient_search_tile.dart';
 
-class SearchPageScreen extends GetWidget<SearchPageController> {
+class SearchPageScreen extends StatelessWidget {
+  final SearchPageController controller = Get.put(SearchPageController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,7 +35,7 @@ class SearchPageScreen extends GetWidget<SearchPageController> {
                   CustomSearchView(
                     width: 380,
                     focusNode: FocusNode(),
-                    controller: controller.searchBarController,
+                    controller: controller.searchBarController.value,
                     hintText: "Search ",
                     prefix: Container(
                       margin: getMargin(
@@ -66,7 +64,7 @@ class SearchPageScreen extends GetWidget<SearchPageController> {
                       ),
                       child: IconButton(
                         onPressed: () {
-                          controller.searchBarController.clear;
+                          controller.searchBarController.value.clear;
                         },
                         icon: Icon(
                           Icons.clear,
@@ -120,23 +118,24 @@ class SearchPageScreen extends GetWidget<SearchPageController> {
                       top: 22,
                       right: 24,
                     ),
-                    child: Obx(
-                      () => ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: controller.searchPageModelObj.value
-                            .listrectanglefour2ItemList.length,
-                        itemBuilder: (context, index) {
-                          Listrectanglefour2ItemModel model = controller
-                              .searchPageModelObj
-                              .value
-                              .listrectanglefour2ItemList[index];
-                          return Listrectanglefour2ItemWidget(
-                            model,
-                          );
-                        },
-                      ),
-                    ),
+                    child: Obx(() {
+                      if (controller.searchBarController.value.text.isEmpty) {
+                        return ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: controller.searchList.length,
+                          itemBuilder: (context, index) {
+                            return PatientListTile(controller.searchList[index]);
+                          },
+                        );
+                      } else {
+                        return Container(
+                          height: 50,
+                          width: 50,
+                          color: Colors.red,
+                        );
+                      }
+                    }),
                   ),
                 ],
               ),
