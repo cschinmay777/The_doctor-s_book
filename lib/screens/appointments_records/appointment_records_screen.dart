@@ -18,6 +18,7 @@ import 'controllers/appointment_page_controller.dart';
 class AppointmentPageScreen extends GetWidget<AppointmentPageController> {
   @override
   Widget build(BuildContext context) {
+    // controller.getUserData();
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.gray900,
@@ -33,55 +34,55 @@ class AppointmentPageScreen extends GetWidget<AppointmentPageController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  CustomSearchView(
-                    width: 380,
-                    focusNode: FocusNode(),
-                    controller: controller.searchBarController,
-                    hintText: "Search ",
-                    prefix: Container(
-                      margin: getMargin(
-                        left: 20,
-                        top: 18,
-                        right: 12,
-                        bottom: 18,
-                      ),
-                      child: CustomImageView(
-                        svgPath: ImageConstant.imgSearch,
-                      ),
-                    ),
-                    prefixConstraints: BoxConstraints(
-                      minWidth: getSize(
-                        20.00,
-                      ),
-                      minHeight: getSize(
-                        20.00,
-                      ),
-                    ),
-                    suffix: Padding(
-                      padding: EdgeInsets.only(
-                        right: getHorizontalSize(
-                          15.00,
-                        ),
-                      ),
-                      child: IconButton(
-                        onPressed: () {
-                          controller.searchBarController.clear;
-                        },
-                        icon: Icon(
-                          Icons.clear,
-                          color: Colors.grey.shade600,
-                        ),
-                      ),
-                    ),
-                    suffixConstraints: BoxConstraints(
-                      minWidth: getHorizontalSize(
-                        20.00,
-                      ),
-                      minHeight: getVerticalSize(
-                        20.00,
-                      ),
-                    ),
-                  ),
+                  // CustomSearchView(
+                  //   width: 380,
+                  //   focusNode: FocusNode(),
+                  //   controller: controller.searchBarController,
+                  //   hintText: "Search ",
+                  //   prefix: Container(
+                  //     margin: getMargin(
+                  //       left: 20,
+                  //       top: 18,
+                  //       right: 12,
+                  //       bottom: 18,
+                  //     ),
+                  //     child: CustomImageView(
+                  //       svgPath: ImageConstant.imgSearch,
+                  //     ),
+                  //   ),
+                  //   prefixConstraints: BoxConstraints(
+                  //     minWidth: getSize(
+                  //       20.00,
+                  //     ),
+                  //     minHeight: getSize(
+                  //       20.00,
+                  //     ),
+                  //   ),
+                  //   suffix: Padding(
+                  //     padding: EdgeInsets.only(
+                  //       right: getHorizontalSize(
+                  //         15.00,
+                  //       ),
+                  //     ),
+                  //     child: IconButton(
+                  //       onPressed: () {
+                  //         controller.searchBarController.clear;
+                  //       },
+                  //       icon: Icon(
+                  //         Icons.clear,
+                  //         color: Colors.grey.shade600,
+                  //       ),
+                  //     ),
+                  //   ),
+                  //   suffixConstraints: BoxConstraints(
+                  //     minWidth: getHorizontalSize(
+                  //       20.00,
+                  //     ),
+                  //     minHeight: getVerticalSize(
+                  //       20.00,
+                  //     ),
+                  //   ),
+                  // ),
                   Padding(
                     padding: getPadding(
                       top: 24,
@@ -142,11 +143,11 @@ class AppointmentPageScreen extends GetWidget<AppointmentPageController> {
             ),
           ),
         ),
-        bottomNavigationBar: CustomBottomBar(
-          onChanged: (BottomBarEnum type) {
-            Get.toNamed(getCurrentRoute(type), id: 1);
-          },
-        ),
+        // bottomNavigationBar: CustomBottomBar(
+        //   onChanged: (BottomBarEnum type) {
+        //     Get.toNamed(getCurrentRoute(type), id: 1);
+        //   },
+        // ),
       ),
     );
   }
