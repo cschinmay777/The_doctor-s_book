@@ -37,15 +37,6 @@ class AppointmentPageController extends GetxController {
     log('No data');
   }
 
-  int listindex(dynamic lst)
-  {
-    for(var i in lst)
-      {
-        return i
-      }
-
-  }
-
   @override
   void onClose() {
     super.onClose();

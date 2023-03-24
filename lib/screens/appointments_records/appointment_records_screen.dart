@@ -128,7 +128,6 @@ class AppointmentPageScreen extends GetWidget<AppointmentPageController> {
                         itemCount: controller.searchList.length,
                         itemBuilder: (context, index) {
                           Patient model = controller.searchList[index];
-                          for (var i in lst) {}
                           return ((controller
                                           .searchList[index].records?[1].date)
                                       .toString() ==
