@@ -10,6 +10,8 @@ import 'package:doctor_book/screens/splash_screen/bindings/splash_bindings.dart'
 import 'package:doctor_book/screens/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
 
+import '../screens/add_record_screen/add_new_record.dart';
+import '../screens/add_record_screen/bindings/add_record_screen_bindings.dart';
 import '../screens/appointments_records/bindings/appointment_page_bindings.dart';
 import '../screens/fill_info_screen/bindings/fill_info_bindings.dart';
 import '../screens/fill_info_screen/fill_info_screen.dart';
@@ -38,6 +40,8 @@ class AppRoutes {
   static String searchrecord = '/searchrecord';
 
   static String appointmentpagerecord = '/appointmentpage';
+
+  static String addnewrecord = '/addnewrecord';
 
   static List<GetPage> pages = [
     GetPage(
@@ -107,6 +111,13 @@ class AppRoutes {
       page: () => AppointmentPageScreen(),
       bindings: [
         AppointmentPageBinding(),
+      ],
+    ),
+    GetPage(
+      name: addnewrecord,
+      page: () => AddNewRecord(),
+      bindings: [
+        AddRecordPageBinding(),
       ],
     ),
   ];
