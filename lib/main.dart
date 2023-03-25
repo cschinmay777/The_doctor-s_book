@@ -21,7 +21,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.grey,
       ),
       debugShowCheckedModeBanner: false,
+
       initialRoute: AppRoutes.initialRoute,
+
       getPages: AppRoutes.pages,
     );
   }

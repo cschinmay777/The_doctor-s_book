@@ -1,15 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'patient_record_model.dart';
 
 class Patient {
   String? name;
-  int? age;
+  String? age;
   List? records;
+  String? next;
 
-  Patient({this.name, this.age, this.records});
+  Patient({this.name, this.age, this.records, this.next});
 
   Patient.fromJson(Map<String, dynamic> json) {
     name = json["name"];
     age = json["age"];
+    next = json["next"];
+    // next = (json["next"] as Timestamp).toDate();
     records = json["records"] != null
         ? (json["records"] as List<dynamic>?)!
             .map((e) => PatientRecord.fromJson(e))
@@ -22,6 +27,7 @@ class Patient {
     data["name"] = name;
     data["age"] = age;
     data["records"] = records;
+    data["next"] = next;
 
     return data;
   }

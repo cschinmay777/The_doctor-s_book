@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,7 @@ import 'widgets/patient_search_tile.dart';
 
 class SearchPageScreen extends StatelessWidget {
   final SearchPageController controller = Get.put(SearchPageController());
+  final TextEditingController searchBarController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,62 +26,57 @@ class SearchPageScreen extends StatelessWidget {
         body: SizedBox(
           width: size.width,
           child: SingleChildScrollView(
-            child: Padding(
+            child: Container(
               padding: getPadding(
                 left: 24,
                 top: 24,
+                right: 24,
+                bottom: 24,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  CustomSearchView(
-                    width: 380,
-                    focusNode: FocusNode(),
-                    controller: controller.searchBarController.value,
-                    hintText: "Search ",
-                    prefix: Container(
-                      margin: getMargin(
-                        left: 20,
-                        top: 18,
-                        right: 12,
-                        bottom: 18,
-                      ),
-                      child: CustomImageView(
-                        svgPath: ImageConstant.imgSearch,
-                      ),
+                  Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: ColorConstant.gray800,
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    prefixConstraints: BoxConstraints(
-                      minWidth: getSize(
-                        20.00,
-                      ),
-                      minHeight: getSize(
-                        20.00,
-                      ),
-                    ),
-                    suffix: Padding(
-                      padding: EdgeInsets.only(
-                        right: getHorizontalSize(
-                          15.00,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.search),
+                          color: ColorConstant.gray400,
                         ),
-                      ),
-                      child: IconButton(
-                        onPressed: () {
-                          controller.searchBarController.value.clear;
-                        },
-                        icon: Icon(
-                          Icons.clear,
-                          color: Colors.grey.shade600,
+                        Expanded(
+                          child: TextField(
+                            controller: searchBarController,
+                            style: const TextStyle(color: Colors.white),
+                            onChanged: (value) {
+                              controller.searchBarText.value = value;
+                            },
+                            decoration: InputDecoration(
+                              hintText: "Search",
+                              hintStyle: AppStyle.txtUrbanistRomanBold18.copyWith(
+                                color: Colors.white,
+                              ),
+                              border: InputBorder.none,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    suffixConstraints: BoxConstraints(
-                      minWidth: getHorizontalSize(
-                        20.00,
-                      ),
-                      minHeight: getVerticalSize(
-                        20.00,
-                      ),
+                        IconButton(
+                          onPressed: () {
+                            controller.searchBarText.value = '';
+                            searchBarController.clear();
+                          },
+                          icon: const Icon(Icons.clear),
+                          color: ColorConstant.gray400,
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
@@ -95,47 +93,68 @@ class SearchPageScreen extends StatelessWidget {
                             bottom: 3,
                           ),
                           child: Text(
-                            "  Records : ",
+                            "Records :",
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left,
                             style: AppStyle.txtUrbanistRomanBold18,
                           ),
                         ),
-                        // CustomImageView(
-                        //   svgPath: ImageConstant.imgMenu28x68,
-                        //   height: getVerticalSize(
-                        //     28.00,
-                        //   ),
-                        //   width: getHorizontalSize(
-                        //     68.00,
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
                   Padding(
                     padding: getPadding(
                       top: 22,
-                      right: 24,
                     ),
-                    child: Obx(() {
-                      if (controller.searchBarController.value.text.isEmpty) {
-                        return ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: controller.searchList.length,
-                          itemBuilder: (context, index) {
-                            return PatientListTile(controller.searchList[index]);
-                          },
-                        );
-                      } else {
-                        return Container(
-                          height: 50,
-                          width: 50,
-                          color: Colors.red,
-                        );
-                      }
-                    }),
+                    child: Obx(
+                      () {
+                        if (controller.searchBarText.value == '') {
+                          return ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: controller.searchList.length,
+                            itemBuilder: (context, index) {
+                              return PatientListTile(controller.searchList[index]);
+                            },
+                          );
+                        } else {
+                          var result = controller.searchPatient();
+                          if (result.isEmpty) {
+                            log("No result found");
+                            return Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.search_off,
+                                    color: ColorConstant.gray400,
+                                    size: 100,
+                                  ),
+                                  Padding(
+                                    padding: getPadding(
+                                      top: 16,
+                                    ),
+                                    child: Text(
+                                      "No result found",
+                                      style: AppStyle.txtUrbanistRomanBold18,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          } else {
+                            return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: result.length,
+                              itemBuilder: (context, index) {
+                                return PatientListTile(result[index]);
+                              },
+                            );
+                          }
+                        }
+                      },
+                    ),
                   ),
                 ],
               ),

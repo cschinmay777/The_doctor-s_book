@@ -109,20 +109,16 @@ class Signup_Screen extends GetWidget<SignupController> {
                                 }))),
                         CustomButton(
                             onTap: () {
-                              Get.toNamed(AppRoutes.fillinfoScreen);
+                              // Get.toNamed(AppRoutes.fillinfoScreen);
+                              controller.signUp();
+                              // controller.saveUser();
+                              // Get.offNamed(AppRoutes.homescreen);
                             },
                             height: 55,
                             width: 380,
                             text: "Sign Up",
                             margin: getMargin(top: 24),
                             variant: ButtonVariant.FillCyan600),
-                        // Padding(
-                        //     padding: getPadding(top: 27),
-                        //     child: Text("Forgot Password",
-                        //         overflow: TextOverflow.ellipsis,
-                        //         textAlign: TextAlign.left,
-                        //         style: AppStyle.txtUrbanistSemiBold16
-                        //             .copyWith(letterSpacing: 0.20))),
                         Padding(
                             padding: getPadding(left: 10, top: 58, right: 10),
                             child: Row(
