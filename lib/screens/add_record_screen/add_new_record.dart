@@ -27,13 +27,15 @@ class AddNewRecord extends StatefulWidget {
 
 class _AddNewRecordState extends State<AddNewRecord> {
   var controller = Get.put(AddRecordPageController());
+  TextEditingController vinayaki = TextEditingController();
+  late List<String> sym;
   @override
-  void initState()
-  {
+  void initState() {
     super.initState();
-    controller.symptoms = new List<String>.empty(growable: true);
-    controller.symptoms.add("");
+    sym = new List<String>.empty(growable: true);
+    sym.add("");
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -51,7 +53,7 @@ class _AddNewRecordState extends State<AddNewRecord> {
                       Get.off(AppRoutes.homescreen);
                     }),
                 centerTitle: true,
-                title: AppbarTitle(text: "Fill Your Profile")),
+                title: AppbarTitle(text: "Add New Patient")),
             body: SingleChildScrollView(
               child: Container(
                   width: size.width,
@@ -239,7 +241,7 @@ class _AddNewRecordState extends State<AddNewRecord> {
                             hintText: "Prescription",
                             margin: getMargin(top: 24),
                             fontStyle:
-                            TextFormFieldFontStyle.UrbanistRegular14),
+                                TextFormFieldFontStyle.UrbanistRegular14),
                         // SingleChildScrollView(
                         //   child: Column(
                         //     children: [
@@ -281,8 +283,13 @@ class _AddNewRecordState extends State<AddNewRecord> {
                         //Continue Button
                         CustomButton(
                             onTap: () {
-                              Get.toNamed(AppRoutes.homescreen);
-                              Get.snackbar("Successful", "Patient added in the database",colorText: Colors.white ,snackPosition: SnackPosition.BOTTOM ,backgroundColor: ColorConstant.cyan60001);
+                              controller.sendPatientData();
+                              Get.offNamed(AppRoutes.homescreen);
+                              Get.snackbar(
+                                  "Successful", "Patient added in the database",
+                                  colorText: Colors.white,
+                                  snackPosition: SnackPosition.BOTTOM,
+                                  backgroundColor: ColorConstant.cyan60001);
                             },
                             height: 55,
                             width: 380,
@@ -327,17 +334,17 @@ class _AddNewRecordState extends State<AddNewRecord> {
           ),
         ),
         ListView.separated(
-            shrinkWrap: true,
-            physics: const ScrollPhysics(),
-            itemBuilder: (context,index) {
-              return Column(
-                children: [
-                  SymptomUI(index),
-                ],
-              );
-            },
-            separatorBuilder: (context,index) => const Divider(),
-            itemCount: controller.symptoms!.length,
+          shrinkWrap: true,
+          physics: const ScrollPhysics(),
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                SymptomUI(index),
+              ],
+            );
+          },
+          separatorBuilder: (context, index) => const Divider(),
+          itemCount: sym!.length,
         )
       ],
     );
@@ -349,6 +356,7 @@ class _AddNewRecordState extends State<AddNewRecord> {
         child: Row(children: [
           Flexible(
             child: CustomTextFormField(
+                controller: vinayaki,
                 width: 380,
                 focusNode: FocusNode(),
                 //controller: ,
@@ -362,9 +370,10 @@ class _AddNewRecordState extends State<AddNewRecord> {
                 child: IconButton(
                     onPressed: () {
                       addSymptomControl();
+                      print(sym);
                     },
                     icon: Icon(Icons.add_circle, color: Colors.white))),
-            visible: index == controller.symptoms.length - 1,
+            visible: index == sym.length - 1,
           ),
           Visibility(
             child: SizedBox(
@@ -379,18 +388,18 @@ class _AddNewRecordState extends State<AddNewRecord> {
         ]));
   }
 
-  void addSymptomControl(){
+  void addSymptomControl() {
     setState(() {
-      controller.symptoms!.add("");
+      sym.add(vinayaki.text);
+      vinayaki.clear();
     });
   }
 
-  void removeSymptomControl(index){
+  void removeSymptomControl(index) {
     setState(() {
-      if(controller.symptoms.length>1)
-        {
-          controller.symptoms.removeAt(index);
-        }
+      if (sym.length > 1) {
+        sym.removeAt(index);
+      }
     });
   }
 }
