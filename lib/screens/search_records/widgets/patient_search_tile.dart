@@ -1,5 +1,8 @@
+import 'package:doctor_book/Routes/app_routes.dart';
+import 'package:doctor_book/core/constants/color_constants.dart';
 import 'package:doctor_book/screens/search_records/models/patient_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PatientListTile extends StatelessWidget {
   final Patient patient;
@@ -29,9 +32,12 @@ class PatientListTile extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      trailing: const Icon(
-        Icons.arrow_forward_ios,
-        color: Colors.white,
+      trailing: IconButton(
+        onPressed: () => Get.toNamed(AppRoutes.patientrecord, arguments: patient),
+        icon: Icon(
+          Icons.arrow_forward_rounded,
+          color: ColorConstant.gray400,
+        ),
       ),
     );
   }

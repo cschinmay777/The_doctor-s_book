@@ -183,7 +183,7 @@ class HomeScreen extends StatelessWidget {
               if (snapshot.connectionState != ConnectionState.done) {
                 return CircularProgressIndicator();
               }
-              print(snapshot.data?.patients);
+              // print(snapshot.data?.patients);
               return SingleChildScrollView(
                 child: Container(
                   margin: getMargin(left: 24, top: 26, right: 24),

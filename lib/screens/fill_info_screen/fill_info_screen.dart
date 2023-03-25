@@ -1,6 +1,7 @@
 import 'package:doctor_book/Routes/app_routes.dart';
 import 'package:doctor_book/core/utils/date_time_utils.dart';
 import 'package:doctor_book/screens/fill_info_screen/controllers/fill_info_controllers.dart';
+import 'package:doctor_book/screens/signup_screen/controllers/signup_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,8 @@ import '../../widgets/custom_drop_down.dart';
 import '../../widgets/custom_image_view.dart';
 import '../../widgets/custom_text_form_field.dart';
 
-class Fill_Info_Screen extends GetWidget<Fill_Info_Controller> {
+class Fill_Info_Screen extends StatelessWidget {
+  var controller = Get.put(Fill_Info_Controller());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -236,8 +238,25 @@ class Fill_Info_Screen extends GetWidget<Fill_Info_Controller> {
                             margin: getMargin(top: 24),
                             fontStyle:
                                 TextFormFieldFontStyle.UrbanistRegular14),
+                        // CustomTextFormField(
+                        //     width: 380,
+                        //     focusNode: FocusNode(),
+                        //     controller: controller.emailController,
+                        //     hintText: "Email",
+                        //     margin: getMargin(top: 24),
+                        //     fontStyle:
+                        //         TextFormFieldFontStyle.UrbanistRegular14),
+                        // CustomTextFormField(
+                        //     width: 380,
+                        //     focusNode: FocusNode(),
+                        //     controller: controller.passwordController,
+                        //     hintText: "Password",
+                        //     margin: getMargin(top: 24),
+                        //     fontStyle:
+                        //         TextFormFieldFontStyle.UrbanistRegular14),
                         CustomButton(
                             onTap: () {
+                              controller.saveUser();
                               Get.toNamed(AppRoutes.homescreen);
                             },
                             height: 55,
