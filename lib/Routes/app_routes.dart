@@ -46,6 +46,7 @@ class AppRoutes {
 
   static String decision = '/decision';
 
+
   static List<GetPage> pages = [
     GetPage(
       name: splashScreen,
@@ -127,5 +128,6 @@ class AppRoutes {
         AddRecordPageBinding(),
       ],
     ),
+
   ];
 }
