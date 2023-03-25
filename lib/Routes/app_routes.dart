@@ -21,6 +21,7 @@ import '../screens/fill_info_screen/fill_info_screen.dart';
 import '../screens/login_screen/bindings/login_bindings.dart';
 import '../screens/login_screen/login_screen.dart';
 import '../screens/signup_screen/bindings/signup_bindings.dart';
+import '../screens/statistics_screen/statistics_screen.dart';
 import '../screens/welcome_screen/welcome_screen.dart';
 
 class AppRoutes {
@@ -50,6 +51,7 @@ class AppRoutes {
 
   static String decision = '/decision';
 
+  static String statisticsscreen = '/statisticsscreen';
 
   static List<GetPage> pages = [
     GetPage(
@@ -98,12 +100,9 @@ class AppRoutes {
         Fill_Info_Binding(),
       ],
     ),
-    GetPage(
-        name: forgotpasswordScreen,
-        page: () => ForgotPasswordScreen(),
-        bindings: [
-          ForgotPasswordBinding(),
-        ]),
+    GetPage(name: forgotpasswordScreen, page: () => ForgotPasswordScreen(), bindings: [
+      ForgotPasswordBinding(),
+    ]),
     GetPage(
       name: homescreen,
       page: () => HomeScreen(),
@@ -136,6 +135,10 @@ class AppRoutes {
       bindings: [
         AddRecordPageBinding(),
       ],
+    ),
+    GetPage(
+      name: statisticsscreen,
+      page: () => StatisticsScreen(),
     ),
   ];
 }
