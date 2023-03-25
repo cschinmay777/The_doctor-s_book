@@ -5,7 +5,7 @@ import '../../../data/models/selection_pop_up_model/selction_pop_up_model.dart';
 class Add_New_Record_Model {
   DateTime selectedLabelTxt = DateTime.now();
 
-  Rx<String> labelTxt = Rx('Date of Birth');
+  Rx<String> labelTxt = Rx('Next Appointment');
 
   //late List<String> symptoms;
 
