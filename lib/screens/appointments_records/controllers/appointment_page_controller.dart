@@ -22,16 +22,18 @@ class AppointmentPageController extends GetxController {
   }
 
   Future getAllPatientDetails() async {
-    var list = await FirebaseFirestore.instance
+    // print(firebaseAuth.currentUser?.uid);
+    var list = await firestore
         .collection('/doctors')
-        .doc('atkySVCs4IaY0eZRJS63')
+        .doc(firebaseAuth.currentUser?.uid)
         .get();
     if (list.data() != null) {
       var patientList = (list.data()!['patients'] as List<dynamic>)
           .map((e) => Patient.fromJson(e))
           .toList();
       searchList.value = patientList;
-      print(patientList[0].records![1].date);
+
+      // print("hell ${(patientList[0].next).toString()}");
       return patientList;
     }
     log('No data');

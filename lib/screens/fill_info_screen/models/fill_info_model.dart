@@ -13,13 +13,7 @@ class Fill_Info_Model {
       title: "Male",
       isSelected: true,
     ),
-    SelectionPopupModel(
-      id: 2,
-      title: "Female",
-    ),
-    SelectionPopupModel(
-      id: 3,
-      title: "Other",
-    )
+    SelectionPopupModel(id: 2, title: "Female", isSelected: false),
+    SelectionPopupModel(id: 3, title: "Other", isSelected: false)
   ].obs;
 }

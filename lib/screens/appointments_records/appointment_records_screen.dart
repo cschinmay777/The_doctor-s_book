@@ -128,10 +128,8 @@ class AppointmentPageScreen extends GetWidget<AppointmentPageController> {
                         itemCount: controller.searchList.length,
                         itemBuilder: (context, index) {
                           Patient model = controller.searchList[index];
-                          return ((controller
-                                          .searchList[index].records?[1].date)
-                                      .toString() ==
-                                  "2023-04-22 13:39:02.541")
+                          return ((4 == 4))
+                              // return ((controller.searchList[index].next) == "4")
                               ? PatientListTile(
                                   model,
                                 )
