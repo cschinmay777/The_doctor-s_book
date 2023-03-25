@@ -38,6 +38,7 @@ class AppbarImage extends StatelessWidget {
           height: height,
           width: width,
           fit: BoxFit.contain,
+          color: Colors.white,
         ),
       ),
     );

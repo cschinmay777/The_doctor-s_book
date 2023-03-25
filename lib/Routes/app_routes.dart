@@ -4,6 +4,7 @@ import 'package:doctor_book/screens/forgot_password_screen/forgot_password_scree
 import 'package:doctor_book/screens/home_screen/bindings/home_screen_bindings.dart';
 import 'package:doctor_book/screens/home_screen/home_screen.dart';
 import 'package:doctor_book/screens/patient_record_screen/patient_record_screen.dart';
+import 'package:doctor_book/screens/login_screen/controllers/decision_log.dart';
 import 'package:doctor_book/screens/search_records/bindings/search_page_bindings.dart';
 import 'package:doctor_book/screens/search_records/models/patient_model.dart';
 import 'package:doctor_book/screens/search_records/search_records_screen.dart';
@@ -12,6 +13,8 @@ import 'package:doctor_book/screens/splash_screen/bindings/splash_bindings.dart'
 import 'package:doctor_book/screens/splash_screen/splash_screen.dart';
 import 'package:get/get.dart';
 
+import '../screens/add_record_screen/add_new_record.dart';
+import '../screens/add_record_screen/bindings/add_record_screen_bindings.dart';
 import '../screens/appointments_records/bindings/appointment_page_bindings.dart';
 import '../screens/fill_info_screen/bindings/fill_info_bindings.dart';
 import '../screens/fill_info_screen/fill_info_screen.dart';
@@ -43,6 +46,11 @@ class AppRoutes {
 
   static String patientrecord = '/searchrecord/patientrecord';
 
+  static String addnewrecord = '/addnewrecord';
+
+  static String decision = '/decision';
+
+
   static List<GetPage> pages = [
     GetPage(
       name: splashScreen,
@@ -50,6 +58,10 @@ class AppRoutes {
       bindings: [
         Splash_Bindings(),
       ],
+    ),
+    GetPage(
+      name: decision,
+      page: () => Decision(),
     ),
     GetPage(
       name: initialRoute,
@@ -117,6 +129,13 @@ class AppRoutes {
       name: patientrecord,
       arguments: Patient,
       page: () => PatientRecordScreen(Get.arguments),
+    ),
+    GetPage(
+      name: addnewrecord,
+      page: () => AddNewRecord(),
+      bindings: [
+        AddRecordPageBinding(),
+      ],
     ),
   ];
 }

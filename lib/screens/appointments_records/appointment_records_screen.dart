@@ -1,5 +1,7 @@
 import 'package:doctor_book/screens/appointments_records/models/listrectanglefour2_item_model.dart';
+import 'package:doctor_book/screens/appointments_records/models/patient_model.dart';
 import 'package:doctor_book/screens/appointments_records/widgets/listrectanglefour2_item_widget.dart';
+import 'package:doctor_book/screens/appointments_records/widgets/patient_tile.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,6 @@ import 'controllers/appointment_page_controller.dart';
 class AppointmentPageScreen extends GetWidget<AppointmentPageController> {
   @override
   Widget build(BuildContext context) {
-    // controller.getUserData();
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.gray900,
@@ -124,16 +125,17 @@ class AppointmentPageScreen extends GetWidget<AppointmentPageController> {
                       () => ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: controller.appointmentPageModelObj.value
-                            .listrectanglefour2ItemList.length,
+                        itemCount: controller.searchList.length,
                         itemBuilder: (context, index) {
-                          Listrectanglefour2ItemModel model = controller
-                              .appointmentPageModelObj
-                              .value
-                              .listrectanglefour2ItemList[index];
-                          return Listrectanglefour2ItemWidget(
-                            model,
-                          );
+                          Patient model = controller.searchList[index];
+                          return ((controller
+                                          .searchList[index].records?[1].date)
+                                      .toString() ==
+                                  "2023-04-22 13:39:02.541")
+                              ? PatientListTile(
+                                  model,
+                                )
+                              : Center();
                         },
                       ),
                     ),
