@@ -2,7 +2,7 @@ import 'patient_record_model.dart';
 
 class Patient {
   String? name;
-  int? age;
+  String? age;
   List<PatientRecord>? records;
 
   Patient({this.name, this.age, this.records});
@@ -11,7 +11,9 @@ class Patient {
     name = json["name"];
     age = json["age"];
     records = json["records"] != null
-        ? (json["records"] as List<dynamic>?)!.map((e) => PatientRecord.fromJson(e)).toList()
+        ? (json["records"] as List<dynamic>?)!
+            .map((e) => PatientRecord.fromJson(e))
+            .toList()
         : null;
   }
 

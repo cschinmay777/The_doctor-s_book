@@ -13,15 +13,22 @@ class PatientRecordScreen extends StatelessWidget {
   final Patient patient;
   const PatientRecordScreen(this.patient, {super.key});
 
-  String capitalCase(String text) {
-    return text.split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
-  }
+  // String capitalCase(String text) {
+  //   return text
+  //       .split(' ')
+  //       .map((word) => word[0].toUpperCase() + word.substring(1))
+  //       .join(' ');
+  // }
 
   @override
   Widget build(BuildContext context) {
     log(patient.records!.length.toString());
     return Scaffold(
       backgroundColor: ColorConstant.gray900,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
       appBar: AppBar(
         backgroundColor: ColorConstant.gray800,
         leading: IconButton(
@@ -33,7 +40,8 @@ class PatientRecordScreen extends StatelessWidget {
         ),
         title: Text(
           'Patient Record',
-          style: AppStyle.txtUrbanistRomanBold18.copyWith(fontSize: getFontSize(25)),
+          style: AppStyle.txtUrbanistRomanBold18
+              .copyWith(fontSize: getFontSize(25)),
         ),
       ),
       body: SingleChildScrollView(
@@ -84,8 +92,8 @@ class PatientRecordScreen extends StatelessWidget {
                       children: [
                         Text(
                           'Record of ${patient.records![index].date!.day}/${patient.records![index].date!.month}/${patient.records![index].date!.year}',
-                          style:
-                              AppStyle.txtUrbanistRomanBold18.copyWith(fontSize: getFontSize(35)),
+                          style: AppStyle.txtUrbanistRomanBold18
+                              .copyWith(fontSize: getFontSize(35)),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -99,7 +107,8 @@ class PatientRecordScreen extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     'Symptoms',
-                                    style: AppStyle.txtUrbanistRomanBold18.copyWith(
+                                    style: AppStyle.txtUrbanistRomanBold18
+                                        .copyWith(
                                       fontSize: getFontSize(25),
                                       color: ColorConstant.gray100,
                                     ),
@@ -109,13 +118,17 @@ class PatientRecordScreen extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 16.0),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: List.generate(
                                       patient.records![index].symptoms!.length,
                                       (index1) => Text(
-                                        capitalCase(
-                                            '${index1 + 1}. ${patient.records![index].symptoms![index1]}'),
-                                        style: AppStyle.txtUrbanistRomanBold18.copyWith(
+                                        patient
+                                            .records![index].symptoms![index1],
+                                        // capitalCase(
+                                        //     '${index1 + 1}. ${patient.records![index].symptoms![index1]}'),
+                                        style: AppStyle.txtUrbanistRomanBold18
+                                            .copyWith(
                                           fontSize: getFontSize(20),
                                           color: ColorConstant.gray400,
                                         ),
@@ -133,7 +146,8 @@ class PatientRecordScreen extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     'Prescription',
-                                    style: AppStyle.txtUrbanistRomanBold18.copyWith(
+                                    style: AppStyle.txtUrbanistRomanBold18
+                                        .copyWith(
                                       fontSize: getFontSize(25),
                                       color: ColorConstant.gray100,
                                     ),
@@ -143,18 +157,33 @@ class PatientRecordScreen extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 16.0),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: List.generate(
-                                      patient.records![index].prescription!.length,
-                                      (index1) => Text(
-                                        capitalCase(
-                                            '${index1 + 1}. ${patient.records![index].prescription![index1]}'),
-                                        style: AppStyle.txtUrbanistRomanBold18.copyWith(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        patient.records![index].prescription!,
+                                        style: AppStyle.txtUrbanistRomanBold18
+                                            .copyWith(
                                           fontSize: getFontSize(20),
                                           color: ColorConstant.gray400,
                                         ),
                                       ),
-                                    ),
+                                    ],
+                                    // children: List.generate(
+                                    //   patient
+                                    //       .records![index].prescription!.length,
+                                    //   (index1) => Text(
+                                    //     patient.records![index]
+                                    //         .prescription![index1],
+                                    //     // capitalCase(
+                                    //     //     '${index1 + 1}. ${patient.records![index].prescription![index1]}'),
+                                    //     style: AppStyle.txtUrbanistRomanBold18
+                                    //         .copyWith(
+                                    //       fontSize: getFontSize(20),
+                                    //       color: ColorConstant.gray400,
+                                    //     ),
+                                    //   ),
+                                    // ),
                                   ),
                                 ),
                               ],
