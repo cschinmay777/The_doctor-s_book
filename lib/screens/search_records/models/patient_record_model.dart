@@ -9,7 +9,7 @@ class PatientRecord{
 
   PatientRecord.fromJson(Map<String, dynamic> json) {
     date = (json["date"] as Timestamp).toDate();
-    symptoms = json["symptoms"];
-    prescription = json["prescription"];
+    symptoms = json["symptoms"] as List<dynamic>;
+    prescription = json["prescription"] as List<dynamic>;
   }
 }

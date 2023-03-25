@@ -3,8 +3,10 @@ import 'package:doctor_book/screens/forgot_password_screen/bindings/forgot_passw
 import 'package:doctor_book/screens/forgot_password_screen/forgot_password_screen.dart';
 import 'package:doctor_book/screens/home_screen/bindings/home_screen_bindings.dart';
 import 'package:doctor_book/screens/home_screen/home_screen.dart';
+import 'package:doctor_book/screens/patient_record_screen/patient_record_screen.dart';
 import 'package:doctor_book/screens/login_screen/controllers/decision_log.dart';
 import 'package:doctor_book/screens/search_records/bindings/search_page_bindings.dart';
+import 'package:doctor_book/screens/search_records/models/patient_model.dart';
 import 'package:doctor_book/screens/search_records/search_records_screen.dart';
 import 'package:doctor_book/screens/signup_screen/signup_screen.dart';
 import 'package:doctor_book/screens/splash_screen/bindings/splash_bindings.dart';
@@ -42,9 +44,12 @@ class AppRoutes {
 
   static String appointmentpagerecord = '/appointmentpage';
 
+  static String patientrecord = '/searchrecord/patientrecord';
+
   static String addnewrecord = '/addnewrecord';
 
   static String decision = '/decision';
+
 
   static List<GetPage> pages = [
     GetPage(
@@ -119,6 +124,11 @@ class AppRoutes {
       bindings: [
         AppointmentPageBinding(),
       ],
+    ),
+    GetPage(
+      name: patientrecord,
+      arguments: Patient,
+      page: () => PatientRecordScreen(Get.arguments),
     ),
     GetPage(
       name: addnewrecord,
