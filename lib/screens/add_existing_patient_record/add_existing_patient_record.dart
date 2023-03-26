@@ -1,8 +1,8 @@
 import 'package:doctor_book/core/utils/date_time_utils.dart';
+import 'package:doctor_book/screens/add_existing_patient_record/controllers/add_existing_patient_record_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../Routes/app_routes.dart';
 import '../../core/constants/color_constants.dart';
 import '../../core/utils/image_constants.dart';
@@ -16,28 +16,16 @@ import '../../widgets/custom_button.dart';
 import '../../widgets/custom_drop_down.dart';
 import '../../widgets/custom_image_view.dart';
 import '../../widgets/custom_text_form_field.dart';
-import 'controller/add_record_screen_controller.dart';
 
-class AddNewRecord extends StatefulWidget {
-  const AddNewRecord({Key? key}) : super(key: key);
-
-  @override
-  State<AddNewRecord> createState() => _AddNewRecordState();
-}
-
-class _AddNewRecordState extends State<AddNewRecord> {
-  var controller = Get.put(AddRecordPageController());
-  TextEditingController vinayaki = TextEditingController();
-  late List<String> sym;
-  @override
-  void initState() {
-    super.initState();
-    sym = new List<String>.empty(growable: true);
-    sym.add("");
-  }
+class AddExistingNewRecord extends StatelessWidget {
+  int index;
+  AddExistingNewRecord(this.index);
+  var controller = Get.put(AddExistingRecordPageController());
 
   @override
   Widget build(BuildContext context) {
+    controller.index = index;
+    print("hi ${controller.index}");
     return SafeArea(
         child: Scaffold(
             backgroundColor: ColorConstant.gray900,
@@ -50,10 +38,10 @@ class _AddNewRecordState extends State<AddNewRecord> {
                     svgPath: ImageConstant.imgArrowleft,
                     margin: getMargin(left: 24, top: 11, bottom: 13),
                     onTap: () {
-                      Get.off(AppRoutes.homescreen);
+                      Get.off(AppRoutes.searchrecord);
                     }),
                 centerTitle: true,
-                title: AppbarTitle(text: "Add New Patient")),
+                title: AppbarTitle(text: "Add Today's Report")),
             body: SingleChildScrollView(
               child: Container(
                   width: size.width,
@@ -62,88 +50,88 @@ class _AddNewRecordState extends State<AddNewRecord> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         //Image
-                        Container(
-                            height: getSize(140.00),
-                            width: getSize(140.00),
-                            child: Stack(
-                                alignment: Alignment.bottomRight,
-                                children: [
-                                  CustomImageView(
-                                      imagePath: ImageConstant.imgEllipse,
-                                      height: getSize(140.00),
-                                      width: getSize(140.00),
-                                      radius: BorderRadius.circular(
-                                          getHorizontalSize(70.00)),
-                                      alignment: Alignment.center),
-                                  CustomImageView(
-                                      svgPath: ImageConstant.imgEdit,
-                                      height: getSize(35.00),
-                                      width: getSize(35.00),
-                                      alignment: Alignment.bottomRight)
-                                ])),
+                        // Container(
+                        //     height: getSize(140.00),
+                        //     width: getSize(140.00),
+                        //     child: Stack(
+                        //         alignment: Alignment.bottomRight,
+                        //         children: [
+                        //           CustomImageView(
+                        //               imagePath: ImageConstant.imgEllipse,
+                        //               height: getSize(140.00),
+                        //               width: getSize(140.00),
+                        //               radius: BorderRadius.circular(
+                        //                   getHorizontalSize(70.00)),
+                        //               alignment: Alignment.center),
+                        //           CustomImageView(
+                        //               svgPath: ImageConstant.imgEdit,
+                        //               height: getSize(35.00),
+                        //               width: getSize(35.00),
+                        //               alignment: Alignment.bottomRight)
+                        //         ])),
                         //Name
-                        CustomTextFormField(
-                            width: 380,
-                            focusNode: FocusNode(),
-                            controller: controller.nameController,
-                            hintText: "Full Name",
-                            margin: getMargin(top: 24),
-                            fontStyle:
-                                TextFormFieldFontStyle.UrbanistRegular14),
+                        // CustomTextFormField(
+                        //     width: 380,
+                        //     focusNode: FocusNode(),
+                        //     controller: controller.nameController,
+                        //     hintText: "Full Name",
+                        //     margin: getMargin(top: 24),
+                        //     fontStyle:
+                        //         TextFormFieldFontStyle.UrbanistRegular14),
                         //Gender
-                        Row(
-                          children: [
-                            Container(
-                              margin: getMargin(top: 24),
-                              padding: getPadding(
-                                  left: 12, top: 11, right: 12, bottom: 11),
-                              decoration: AppDecoration.fillBluegray90001
-                                  .copyWith(
-                                      borderRadius:
-                                          BorderRadiusStyle.roundedBorder12),
-                              child: CustomDropDown(
-                                  width: 140,
-                                  focusNode: FocusNode(),
-                                  icon: Container(
-                                      margin: getMargin(left: 30, right: 20),
-                                      child: CustomImageView(
-                                          svgPath: ImageConstant.imgArrowdown)),
-                                  hintText: "Gender",
-                                  margin: getMargin(top: 0),
-                                  items: controller.add_new_record_ModelObj
-                                      .value.dropdownItemList,
-                                  onChanged: (value) {
-                                    controller.onSelected(value);
-                                  }),
-                            ),
-                          ],
-                        ),
-                        CustomTextFormField(
-                            width: 380,
-                            focusNode: FocusNode(),
-                            controller: controller.ageController,
-                            hintText: "Age",
-                            margin: getMargin(top: 24),
-                            fontStyle:
-                                TextFormFieldFontStyle.UrbanistRegular14),
+                        // Row(
+                        //   children: [
+                        //     Container(
+                        //       margin: getMargin(top: 24),
+                        //       padding: getPadding(
+                        //           left: 12, top: 11, right: 12, bottom: 11),
+                        //       decoration: AppDecoration.fillBluegray90001
+                        //           .copyWith(
+                        //               borderRadius:
+                        //                   BorderRadiusStyle.roundedBorder12),
+                        //       child: CustomDropDown(
+                        //           width: 140,
+                        //           focusNode: FocusNode(),
+                        //           icon: Container(
+                        //               margin: getMargin(left: 30, right: 20),
+                        //               child: CustomImageView(
+                        //                   svgPath: ImageConstant.imgArrowdown)),
+                        //           hintText: "Gender",
+                        //           margin: getMargin(top: 0),
+                        //           items: controller.add_new_record_ModelObj
+                        //               .value.dropdownItemList,
+                        //           onChanged: (value) {
+                        //             controller.onSelected(value);
+                        //           }),
+                        //     ),
+                        //   ],
+                        // ),
+                        // CustomTextFormField(
+                        //     width: 380,
+                        //     focusNode: FocusNode(),
+                        //     controller: controller.ageController,
+                        //     hintText: "Age",
+                        //     margin: getMargin(top: 24),
+                        //     fontStyle:
+                        //         TextFormFieldFontStyle.UrbanistRegular14),
                         //Number
-                        CustomTextFormField(
-                            width: 380,
-                            focusNode: FocusNode(),
-                            controller: controller.numberController,
-                            hintText: "Phone number",
-                            margin: getMargin(top: 24),
-                            fontStyle:
-                                TextFormFieldFontStyle.UrbanistRegular14),
+                        // CustomTextFormField(
+                        //     width: 380,
+                        //     focusNode: FocusNode(),
+                        //     controller: controller.numberController,
+                        //     hintText: "Phone number",
+                        //     margin: getMargin(top: 24),
+                        //     fontStyle:
+                        //         TextFormFieldFontStyle.UrbanistRegular14),
                         //Address
-                        CustomTextFormField(
-                            width: 380,
-                            focusNode: FocusNode(),
-                            controller: controller.addressController,
-                            hintText: "Residential Address",
-                            margin: getMargin(top: 24),
-                            fontStyle:
-                                TextFormFieldFontStyle.UrbanistRegular14),
+                        // CustomTextFormField(
+                        //     width: 380,
+                        //     focusNode: FocusNode(),
+                        //     controller: controller.addressController,
+                        //     hintText: "Residential Address",
+                        //     margin: getMargin(top: 24),
+                        //     fontStyle:
+                        //         TextFormFieldFontStyle.UrbanistRegular14),
                         //Record
                         Row(
                           children: [
@@ -282,7 +270,8 @@ class _AddNewRecordState extends State<AddNewRecord> {
                         // ),
                         //Continue Button
                         CustomButton(
-                            onTap: () {
+                            onTap: () async {
+                              await controller.getAllPatientDetails();
                               controller.sendPatientData();
                               Get.offNamed(AppRoutes.homescreen);
                               Get.snackbar(
@@ -305,7 +294,8 @@ class _AddNewRecordState extends State<AddNewRecord> {
         context: Get.context!,
         initialDate: controller.add_new_record_ModelObj.value.selectedLabelTxt,
         firstDate: DateTime(1970),
-        lastDate: DateTime(2024));
+        lastDate: DateTime(
+            DateTime.now().year, DateTime.now().month, DateTime.now().day));
     if (dateTime != null) {
       controller.add_new_record_ModelObj.value.selectedLabelTxt = dateTime;
       controller.add_new_record_ModelObj.value.labelTxt.value =
@@ -332,73 +322,20 @@ class _AddNewRecordState extends State<AddNewRecord> {
             ),
           ),
         ),
-        ListView.separated(
-          shrinkWrap: true,
-          physics: const ScrollPhysics(),
-          itemBuilder: (context, index) {
-            return Column(
-              children: [
-                SymptomUI(index),
-              ],
-            );
-          },
-          separatorBuilder: (context, index) => const Divider(),
-          itemCount: sym!.length,
-        )
+        // ListView.separated(
+        //   shrinkWrap: true,
+        //   physics: const ScrollPhysics(),
+        //   itemBuilder: (context, index) {
+        //     return Column(
+        //       children: [
+        //         // SymptomUI(index),
+        //       ],
+        //     );
+        //   },
+        //   separatorBuilder: (context, index) => const Divider(),
+        //   itemCount: sym!.length,
+        // )
       ],
     );
-  }
-
-  Widget SymptomUI(index) {
-    return Padding(
-        padding: EdgeInsets.all(10),
-        child: Row(children: [
-          Flexible(
-            child: CustomTextFormField(
-                controller: vinayaki,
-                width: 380,
-                focusNode: FocusNode(),
-                //controller: ,
-                hintText: "Symptom",
-                margin: getMargin(top: 24),
-                fontStyle: TextFormFieldFontStyle.UrbanistRegular14),
-          ),
-          Visibility(
-            child: SizedBox(
-                width: 35,
-                child: IconButton(
-                    onPressed: () {
-                      addSymptomControl();
-                      print(sym);
-                    },
-                    icon: Icon(Icons.add_circle, color: Colors.white))),
-            visible: index == sym.length - 1,
-          ),
-          Visibility(
-            child: SizedBox(
-                width: 35,
-                child: IconButton(
-                    onPressed: () {
-                      removeSymptomControl(index);
-                    },
-                    icon: Icon(Icons.remove_circle, color: Colors.white))),
-            visible: index > 0,
-          ),
-        ]));
-  }
-
-  void addSymptomControl() {
-    setState(() {
-      sym.add(vinayaki.text);
-      vinayaki.clear();
-    });
-  }
-
-  void removeSymptomControl(index) {
-    setState(() {
-      if (sym.length > 1) {
-        sym.removeAt(index);
-      }
-    });
   }
 }

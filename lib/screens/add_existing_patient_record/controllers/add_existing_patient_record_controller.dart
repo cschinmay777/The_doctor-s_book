@@ -1,17 +1,16 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doctor_book/screens/add_record_screen/models/patient_rec_model.dart';
+import 'package:doctor_book/screens/add_existing_patient_record/model/add_existing_patient_record_model.dart';
+import 'package:doctor_book/screens/appointments_records/models/patient_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/firebaseconstants.dart';
 import '../../../data/models/selection_pop_up_model/selction_pop_up_model.dart';
-import '../../appointments_records/models/patient_model.dart';
-import '../models/add_new_record_model.dart';
 
-class AddRecordPageController extends GetxController {
+class AddExistingRecordPageController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController ageController = TextEditingController();
   TextEditingController numberController = TextEditingController();
@@ -21,10 +20,14 @@ class AddRecordPageController extends GetxController {
   TextEditingController bpController = TextEditingController();
   TextEditingController prescriptionController = TextEditingController();
   SelectionPopupModel? selectedDropDownValue;
-  late List<String> symptoms;
-  Rx<Add_New_Record_Model> add_new_record_ModelObj = Add_New_Record_Model().obs;
-  var searchList = <AddPatientRecord>[].obs;
+  // late List<String> symptoms;
+  Rx<Add_Existing_Record_Model> add_new_record_ModelObj =
+      Add_Existing_Record_Model().obs;
+  late int index;
+
+  var searchList = <Patient>[].obs;
   List? plst;
+  List? rlst;
 
   Future getAllPatientDetails() async {
     // print(firebaseAuth.currentUser?.uid);
@@ -33,10 +36,11 @@ class AddRecordPageController extends GetxController {
         .doc(firebaseAuth.currentUser?.uid)
         .get();
     plst = list.data()!['patients'];
+    rlst = plst = list.data()!['patients'][index]['records'];
     print(plst);
     if (list.data() != null) {
       var patientList = (list.data()!['patients'] as List<dynamic>)
-          .map((e) => AddPatientRecord.fromJson(e))
+          .map((e) => Patient.fromJson(e))
           .toList();
       searchList.value = patientList;
 
@@ -49,7 +53,6 @@ class AddRecordPageController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    getAllPatientDetails();
   }
 
   @override
@@ -98,12 +101,7 @@ class AddRecordPageController extends GetxController {
 
   Future sendPatientData(
       {User? currentUser,
-      String? name,
       DateTime? next,
-      String? age,
-      String? phone,
-      String? address,
-      String? gender,
       String? weight,
       String? temp,
       String? bp,
@@ -112,28 +110,31 @@ class AddRecordPageController extends GetxController {
       List? records,
       DateTime? date,
       required}) async {
-    List rec = [
-      {
-        'weight': weightController.text,
-        'temp': temperatureController.text,
-        'bp': bpController.text,
-        'symptoms': symptoms,
-        'date': DateTime.now(),
-        'prescription': prescriptionController.text,
-      }
-    ];
-    var lst = {
-      'name': nameController.text,
-      'phone': numberController.text,
-      'address': addressController.text,
-      'gender': selectedDropDownValue?.title,
-      'age': ageController.text,
-      'uid': firebaseAuth.currentUser?.uid,
-      'records': rec,
-      'next': add_new_record_ModelObj.value.labelTxt.value,
+    var rec = {
+      'weight': weightController.text,
+      'temp': temperatureController.text,
+      'bp': bpController.text,
+      'symptoms': symptoms,
+      'date': DateTime.now(),
+      'prescription': prescriptionController.text,
     };
 
-    plst?.add(lst);
+    rlst?.add(rec);
+    print(plst);
+    plst![index]['records'] = rlst;
+    List lst = [
+      {
+        // 'name': nameController.text,
+        // 'phone': numberController.text,
+        // 'address': addressController.text,
+        // 'gender': selectedDropDownValue?.title,
+        // 'age': ageController.text,
+        // 'uid': firebaseAuth.currentUser?.uid,
+        'records': plst,
+        'next': add_new_record_ModelObj.value.labelTxt.value,
+      }
+    ];
+
     await firestore
         .collection("doctors")
         .doc(firebaseAuth.currentUser?.uid)
