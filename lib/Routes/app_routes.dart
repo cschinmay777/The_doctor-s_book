@@ -1,3 +1,5 @@
+import 'package:doctor_book/screens/add_existing_patient_record/add_existing_patient_record.dart';
+import 'package:doctor_book/screens/add_existing_patient_record/bindings/add_existing_record_bindings.dart';
 import 'package:doctor_book/screens/appointments_records/appointment_records_screen.dart';
 import 'package:doctor_book/screens/forgot_password_screen/bindings/forgot_password_bindings.dart';
 import 'package:doctor_book/screens/forgot_password_screen/forgot_password_screen.dart';
@@ -21,6 +23,7 @@ import '../screens/fill_info_screen/fill_info_screen.dart';
 import '../screens/login_screen/bindings/login_bindings.dart';
 import '../screens/login_screen/login_screen.dart';
 import '../screens/signup_screen/bindings/signup_bindings.dart';
+import '../screens/statistics_screen/statistics_screen.dart';
 import '../screens/welcome_screen/welcome_screen.dart';
 
 class AppRoutes {
@@ -50,6 +53,10 @@ class AppRoutes {
 
   static String decision = '/decision';
 
+  static String addexistingpatientrecord = '/addexistingpatientrecord';
+
+  static String statisticsscreen = '/statisticsscreen';
+
 
   static List<GetPage> pages = [
     GetPage(
@@ -77,6 +84,14 @@ class AppRoutes {
       // SplashBinding(),
       // ],
     ),
+    // GetPage(
+    //   name: addexistingpatientrecord,
+    //   // arguments: int,
+    //   page: () => AddExistingNewRecord(),
+    //   bindings: [
+    //     AddExistingRecordPageBinding(),
+    //   ],
+    // ),
     GetPage(
       name: loginScreen,
       page: () => Login_Screen(),
@@ -98,12 +113,9 @@ class AppRoutes {
         Fill_Info_Binding(),
       ],
     ),
-    GetPage(
-        name: forgotpasswordScreen,
-        page: () => ForgotPasswordScreen(),
-        bindings: [
-          ForgotPasswordBinding(),
-        ]),
+    GetPage(name: forgotpasswordScreen, page: () => ForgotPasswordScreen(), bindings: [
+      ForgotPasswordBinding(),
+    ]),
     GetPage(
       name: homescreen,
       page: () => HomeScreen(),
@@ -125,17 +137,22 @@ class AppRoutes {
         AppointmentPageBinding(),
       ],
     ),
-    GetPage(
-      name: patientrecord,
-      arguments: Patient,
-      page: () => PatientRecordScreen(Get.arguments),
-    ),
+    // GetPage(
+    //   name: patientrecord,
+    //   arguments: [Patient, int],
+    //   page: () => PatientRecordScreen(Get.arguments()),
+    // ),
     GetPage(
       name: addnewrecord,
       page: () => AddNewRecord(),
       bindings: [
         AddRecordPageBinding(),
       ],
+    ),
+
+    GetPage(
+      name: statisticsscreen,
+      page: () => StatisticsScreen(),
     ),
 
   ];
