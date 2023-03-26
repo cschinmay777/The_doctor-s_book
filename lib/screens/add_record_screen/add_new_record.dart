@@ -343,7 +343,7 @@ class _AddNewRecordState extends State<AddNewRecord> {
             );
           },
           separatorBuilder: (context, index) => const Divider(),
-          itemCount: sym!.length,
+          itemCount: sym.length,
         )
       ],
     );
