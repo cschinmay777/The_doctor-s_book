@@ -104,7 +104,7 @@ _Here doctors can communicate with other doctors regarding medical innovations, 
   
 ## Demo
 
-https://drive.google.com/file/d/1m3uz-0TbAbG3ibQlSf9DQbRh8YISyOuQ/view?usp=sharing
+https://youtu.be/qba6loqoFgU
 
 ## Run Locally
 
