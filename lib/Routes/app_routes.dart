@@ -149,9 +149,11 @@ class AppRoutes {
         AddRecordPageBinding(),
       ],
     ),
+
     GetPage(
       name: statisticsscreen,
       page: () => StatisticsScreen(),
     ),
+
   ];
 }
