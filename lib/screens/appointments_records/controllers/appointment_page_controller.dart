@@ -19,6 +19,7 @@ class AppointmentPageController extends GetxController {
   void onReady() {
     super.onReady();
     getAllPatientDetails();
+    print(searchList);
   }
 
   Future getAllPatientDetails() async {

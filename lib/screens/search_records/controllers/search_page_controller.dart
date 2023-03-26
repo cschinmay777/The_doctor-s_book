@@ -25,13 +25,14 @@ class SearchPageController extends GetxController {
   Future getAllPatientDetails() async {
     var list = await FirebaseFirestore.instance
         .collection('/doctors')
-        .doc("jhDvxmlpU4PceAzQYsFMQpkRZR82")
+        .doc(firebaseAuth.currentUser?.uid)
         .get();
     if (list.data() != null) {
       var patientList = (list.data()!['patients'] as List<dynamic>)
           .map((e) => Patient.fromJson(e))
           .toList();
       searchList.value = patientList;
+
       return patientList;
     }
     log('No data');

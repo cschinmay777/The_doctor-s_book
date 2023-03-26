@@ -61,7 +61,8 @@ class SearchPageScreen extends StatelessWidget {
                             },
                             decoration: InputDecoration(
                               hintText: "Search",
-                              hintStyle: AppStyle.txtUrbanistRomanBold18.copyWith(
+                              hintStyle:
+                                  AppStyle.txtUrbanistRomanBold18.copyWith(
                                 color: Colors.white,
                               ),
                               border: InputBorder.none,
@@ -114,7 +115,8 @@ class SearchPageScreen extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: controller.searchList.length,
                             itemBuilder: (context, index) {
-                              return PatientListTile(controller.searchList[index]);
+                              return PatientListTile(
+                                  controller.searchList[index], index);
                             },
                           );
                         } else {
@@ -148,7 +150,7 @@ class SearchPageScreen extends StatelessWidget {
                               shrinkWrap: true,
                               itemCount: result.length,
                               itemBuilder: (context, index) {
-                                return PatientListTile(result[index]);
+                                return PatientListTile(result[index], index);
                               },
                             );
                           }
@@ -161,11 +163,11 @@ class SearchPageScreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: CustomBottomBar(
-          onChanged: (BottomBarEnum type) {
-            Get.toNamed(getCurrentRoute(type), id: 1);
-          },
-        ),
+        // bottomNavigationBar: CustomBottomBar(
+        //   onChanged: (BottomBarEnum type) {
+        //     Get.toNamed(getCurrentRoute(type), id: 1);
+        //   },
+        // ),
       ),
     );
   }

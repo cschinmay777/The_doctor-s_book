@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:doctor_book/Routes/app_routes.dart';
 import 'package:doctor_book/core/utils/size_utils.dart';
+import 'package:doctor_book/screens/add_existing_patient_record/add_existing_patient_record.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +12,9 @@ import '../search_records/models/patient_model.dart';
 
 class PatientRecordScreen extends StatelessWidget {
   final Patient patient;
-  const PatientRecordScreen(this.patient, {super.key});
+  final int index;
+  // final List lst;
+  const PatientRecordScreen(this.patient, this.index, {super.key});
 
   // String capitalCase(String text) {
   //   return text
@@ -22,12 +25,20 @@ class PatientRecordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // var d = Get.arguments();
+    // print(Get.arguments);
+    print(index);
     log(patient.records!.length.toString());
     return Scaffold(
       backgroundColor: ColorConstant.gray900,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return AddExistingNewRecord(index);
+          }));
+          // Get.toNamed(AppRoutes.addexistingpatientrecord, arguments: index);
+        },
       ),
       appBar: AppBar(
         backgroundColor: ColorConstant.gray800,
