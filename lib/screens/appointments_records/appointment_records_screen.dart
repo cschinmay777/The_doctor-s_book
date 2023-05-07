@@ -11,6 +11,9 @@ import '../../core/constants/color_constants.dart';
 import '../../core/utils/image_constants.dart';
 import '../../core/utils/size_utils.dart';
 import '../../theme/app_style.dart';
+import '../../widgets/app_bar/appbar_image.dart';
+import '../../widgets/app_bar/appbar_title.dart';
+import '../../widgets/app_bar/custom_app_bar.dart';
 import '../../widgets/custom_bottom_bar.dart';
 import '../../widgets/custom_image_view.dart';
 import '../../widgets/custom_search_view.dart';
@@ -23,6 +26,17 @@ class AppointmentPageScreen extends GetWidget<AppointmentPageController> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.gray900,
+        appBar: CustomAppBar(
+            height: getVerticalSize(56.00),
+            leadingWidth: 52,
+            leading: AppbarImage(
+                height: getSize(28.00),
+                width: getSize(28.00),
+                svgPath: ImageConstant.imgArrowleft,
+                margin: getMargin(left: 24, top: 11, bottom: 13),
+                onTap: () {}),
+            centerTitle: true,
+            title: AppbarTitle(text: "Today's Appointment")),
         body: SizedBox(
           width: size.width,
           child: SingleChildScrollView(
@@ -129,11 +143,19 @@ class AppointmentPageScreen extends GetWidget<AppointmentPageController> {
                         itemBuilder: (context, index) {
                           Patient model = controller.searchList[index];
                           print(controller.searchList[index].next);
+                          String d = "${DateTime.now().day}";
+                          String m = "${DateTime.now().month}";
+                          if (d.length == 1) {
+                            d = "0${DateTime.now().day}";
+                          }
+                          if (m.length == 1) {
+                            m = "0${DateTime.now().month}";
+                          }
                           print(
                               "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}");
                           return ((controller.searchList[index].next)
                                       .toString() ==
-                                  "${DateTime.now().day}/0${DateTime.now().month}/${DateTime.now().year}")
+                                  "${d}/${m}/${DateTime.now().year}")
                               ? PatientListTile(
                                   model,
                                 )

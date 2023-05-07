@@ -19,6 +19,7 @@ import '../../widgets/app_bar/appbar_image.dart';
 import '../../widgets/app_bar/appbar_title.dart';
 import '../../widgets/app_bar/custom_app_bar.dart';
 
+import '../chatscreen/chatscreen.dart';
 import '../login_screen/controllers/login_controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -31,26 +32,29 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          key: HomeScreenController.scaffoldKey,
+        // key: HomeScreenController.scaffoldKey,
         drawer: Drawer(
             backgroundColor: ColorConstant.gray900,
-            child:Column(
+            child: Column(
               children: [
                 Expanded(
                   child: Container(
                     child: DrawerHeader(
                         padding: EdgeInsets.fromLTRB(0.2, 0, 0.2, 0),
                         child: FutureBuilder<DoctorModel>(
-                            future:controller.fetchData(),
-                            builder: (context,snapshot){
-                              if (snapshot.connectionState != ConnectionState.done) {
+                            future: controller.fetchData(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState !=
+                                  ConnectionState.done) {
                                 return CircularProgressIndicator();
                               }
                               return Container(
-                                  margin: getMargin(left: 24, top: 26, right: 24),
+                                  margin:
+                                      getMargin(left: 24, top: 26, right: 24),
                                   decoration: AppDecoration.fillGray900,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Container(
@@ -60,38 +64,49 @@ class HomeScreen extends StatelessWidget {
                                           right: 10,
                                           bottom: 20,
                                         ),
-                                        decoration: AppDecoration.outlineBlack9000c.copyWith(
-                                          borderRadius: BorderRadiusStyle.roundedBorder20,
+                                        decoration: AppDecoration
+                                            .outlineBlack9000c
+                                            .copyWith(
+                                          borderRadius:
+                                              BorderRadiusStyle.roundedBorder20,
                                         ),
                                         child: Row(
                                           children: [
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: getPadding(left: 10, top: 50),
+                                                  padding: getPadding(
+                                                      left: 10, top: 50),
                                                   child: Text(
                                                     "Doctor",
                                                     textAlign: TextAlign.left,
                                                     style: TextStyle(
                                                         fontFamily: 'Urbanist',
-                                                        fontWeight: FontWeight.w400,
+                                                        fontWeight:
+                                                            FontWeight.w400,
                                                         fontSize: 24,
                                                         color: Colors.white),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding:
-                                                  getPadding(left: 10, top: 10, bottom: 5),
+                                                  padding: getPadding(
+                                                      left: 10,
+                                                      top: 10,
+                                                      bottom: 5),
                                                   child: Text(
                                                     "${snapshot.data?.name}",
                                                     textAlign: TextAlign.left,
                                                     style: TextStyle(
                                                         fontFamily: 'Urbanist',
                                                         fontSize: 48,
-                                                        color: ColorConstant.cyan60001,
-                                                        fontWeight: FontWeight.w500),
+                                                        color: ColorConstant
+                                                            .cyan60001,
+                                                        fontWeight:
+                                                            FontWeight.w500),
                                                   ),
                                                 ),
                                               ],
@@ -102,15 +117,30 @@ class HomeScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ],
-                                  )
-                              );
-                            }
-                        )
-                    ),
+                                  ));
+                            })),
                   ),
                 ),
                 ListTile(
-                  onTap: (){},
+                  onTap: () {
+                    Get.toNamed(AppRoutes.statisticsscreen);
+                  },
+                  leading: CustomImageView(
+                    svgPath: ImageConstant.imgEdit,
+                    color: Colors.white,
+                  ),
+                  title: Text(
+                    "Statistics",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontFamily: 'Urbanist',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 24,
+                        color: Colors.white),
+                  ),
+                ),
+                ListTile(
+                  onTap: () {},
                   leading: CustomImageView(
                     svgPath: ImageConstant.imgEdit,
                     color: Colors.white,
@@ -126,7 +156,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  onTap: (){},
+                  onTap: () {},
                   leading: CustomImageView(
                     svgPath: ImageConstant.imgInfo,
                   ),
@@ -141,7 +171,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  onTap: (){
+                  onTap: () {
                     authcontroller.signout();
                   },
                   leading: CustomImageView(
@@ -158,8 +188,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 )
               ],
-            )
-        ),
+            )),
         // appBar: CustomAppBar(
         //     height: getVerticalSize(56.00),
         //     leadingWidth: 52,
@@ -181,7 +210,7 @@ class HomeScreen extends StatelessWidget {
             future: controller.fetchData(),
             builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.done) {
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               }
               // print(snapshot.data?.patients);
               return SingleChildScrollView(
@@ -303,7 +332,10 @@ class HomeScreen extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  authcontroller.signout();
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ChatScreen()));
                                 },
                                 child: HomeScreenCardWidget(
                                   HomeScreenItemModel(

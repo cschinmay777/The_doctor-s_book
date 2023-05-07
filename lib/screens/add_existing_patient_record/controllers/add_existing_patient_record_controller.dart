@@ -19,6 +19,7 @@ class AddExistingRecordPageController extends GetxController {
   TextEditingController temperatureController = TextEditingController();
   TextEditingController bpController = TextEditingController();
   TextEditingController prescriptionController = TextEditingController();
+  TextEditingController symptomsController = TextEditingController();
   SelectionPopupModel? selectedDropDownValue;
   // late List<String> symptoms;
   Rx<Add_Existing_Record_Model> add_new_record_ModelObj =
@@ -28,6 +29,7 @@ class AddExistingRecordPageController extends GetxController {
   var searchList = <Patient>[].obs;
   List? plst;
   List? rlst;
+  List? symp;
 
   Future getAllPatientDetails() async {
     // print(firebaseAuth.currentUser?.uid);
@@ -36,17 +38,9 @@ class AddExistingRecordPageController extends GetxController {
         .doc(firebaseAuth.currentUser?.uid)
         .get();
     plst = list.data()!['patients'];
-    rlst = plst = list.data()!['patients'][index]['records'];
-    print(plst);
-    if (list.data() != null) {
-      var patientList = (list.data()!['patients'] as List<dynamic>)
-          .map((e) => Patient.fromJson(e))
-          .toList();
-      searchList.value = patientList;
+    rlst = list.data()!['patients'][index]['records'];
+    // print(plst);
 
-      // print("hell ${(patientList[0].next).toString()}");
-      return patientList;
-    }
     log('No data');
   }
 
@@ -79,26 +73,6 @@ class AddExistingRecordPageController extends GetxController {
     add_new_record_ModelObj.value.dropdownItemList.refresh();
   }
 
-  var pat = [
-    {
-      "age": "28",
-      "name": "Shubham",
-      "next": DateTime.april,
-      "records": [
-        {
-          "date": DateTime.march,
-          "prescription": ["crocin", "cough syrup"],
-          "symptoms": ["cough", "headache"]
-        },
-        {
-          "date": DateTime.march,
-          "prescription": ["calpol", "zeal"],
-          "symptoms": ["fever", "dry cough"]
-        },
-      ]
-    }
-  ];
-
   Future sendPatientData(
       {User? currentUser,
       DateTime? next,
@@ -114,26 +88,13 @@ class AddExistingRecordPageController extends GetxController {
       'weight': weightController.text,
       'temp': temperatureController.text,
       'bp': bpController.text,
-      'symptoms': symptoms,
+      'symptoms': symptomsController.text.split(','),
       'date': DateTime.now(),
       'prescription': prescriptionController.text,
     };
-
+    plst![index]['next'] = add_new_record_ModelObj.value.labelTxt.value;
     rlst?.add(rec);
-    print(plst);
     plst![index]['records'] = rlst;
-    List lst = [
-      {
-        // 'name': nameController.text,
-        // 'phone': numberController.text,
-        // 'address': addressController.text,
-        // 'gender': selectedDropDownValue?.title,
-        // 'age': ageController.text,
-        // 'uid': firebaseAuth.currentUser?.uid,
-        'records': plst,
-        'next': add_new_record_ModelObj.value.labelTxt.value,
-      }
-    ];
 
     await firestore
         .collection("doctors")

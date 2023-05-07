@@ -20,6 +20,7 @@ class AddRecordPageController extends GetxController {
   TextEditingController temperatureController = TextEditingController();
   TextEditingController bpController = TextEditingController();
   TextEditingController prescriptionController = TextEditingController();
+  TextEditingController symptomsController = TextEditingController();
   SelectionPopupModel? selectedDropDownValue;
   late List<String> symptoms;
   Rx<Add_New_Record_Model> add_new_record_ModelObj = Add_New_Record_Model().obs;
@@ -117,7 +118,7 @@ class AddRecordPageController extends GetxController {
         'weight': weightController.text,
         'temp': temperatureController.text,
         'bp': bpController.text,
-        'symptoms': symptoms,
+        'symptoms': symptomsController.text.split(','),
         'date': DateTime.now(),
         'prescription': prescriptionController.text,
       }

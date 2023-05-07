@@ -233,7 +233,15 @@ class _AddNewRecordState extends State<AddNewRecord> {
                             fontStyle:
                                 TextFormFieldFontStyle.UrbanistRegular14),
                         //Symptoms
-                        SymptomsContainer(),
+                        // SymptomsContainer(),
+                        CustomTextFormField(
+                            width: 380,
+                            focusNode: FocusNode(),
+                            controller: controller.symptomsController,
+                            hintText: "Symptoms",
+                            margin: getMargin(top: 24),
+                            fontStyle:
+                                TextFormFieldFontStyle.UrbanistRegular14),
                         CustomTextFormField(
                             width: 380,
                             focusNode: FocusNode(),

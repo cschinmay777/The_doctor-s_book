@@ -16,20 +16,18 @@ class PatientListTile extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () async {
-                final Uri url = Uri(scheme: 'tel',path: "7506470449");
-                if(await canLaunchUrl(url)){
-                  await launchUrl(url);
-                }
-                else
-                  {
-                     print('cannot launch');
-                  }
+              final Uri url = Uri(scheme: 'tel', path: patient.phone);
+              if (await canLaunchUrl(url)) {
+                await launchUrl(url);
+              } else {
+                print('cannot launch');
+              }
             },
             icon: Icon(
-            Icons.call,
-            color: Colors.white,
-          ),)
-
+              Icons.call,
+              color: Colors.white,
+            ),
+          )
         ],
       ),
       title: Text(
@@ -44,12 +42,11 @@ class PatientListTile extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      trailing:
-          const Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.white,
-          ),
-        //],
+      trailing: const Icon(
+        Icons.arrow_forward_ios,
+        color: Colors.white,
+      ),
+      //],
       //)
     );
   }

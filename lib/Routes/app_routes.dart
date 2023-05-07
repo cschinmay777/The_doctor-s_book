@@ -18,6 +18,7 @@ import 'package:get/get.dart';
 import '../screens/add_record_screen/add_new_record.dart';
 import '../screens/add_record_screen/bindings/add_record_screen_bindings.dart';
 import '../screens/appointments_records/bindings/appointment_page_bindings.dart';
+import '../screens/chatscreen/chatscreen.dart';
 import '../screens/fill_info_screen/bindings/fill_info_bindings.dart';
 import '../screens/fill_info_screen/fill_info_screen.dart';
 import '../screens/login_screen/bindings/login_bindings.dart';
@@ -57,6 +58,7 @@ class AppRoutes {
 
   static String statisticsscreen = '/statisticsscreen';
 
+  static String chatscreen = "/chatscreen";
 
   static List<GetPage> pages = [
     GetPage(
@@ -113,9 +115,19 @@ class AppRoutes {
         Fill_Info_Binding(),
       ],
     ),
-    GetPage(name: forgotpasswordScreen, page: () => ForgotPasswordScreen(), bindings: [
-      ForgotPasswordBinding(),
-    ]),
+    GetPage(
+      name: chatscreen,
+      page: () => ChatScreen(),
+      // bindings: [
+      //   Fill_Info_Binding(),
+      // ],
+    ),
+    GetPage(
+        name: forgotpasswordScreen,
+        page: () => ForgotPasswordScreen(),
+        bindings: [
+          ForgotPasswordBinding(),
+        ]),
     GetPage(
       name: homescreen,
       page: () => HomeScreen(),
@@ -154,6 +166,5 @@ class AppRoutes {
       name: statisticsscreen,
       page: () => StatisticsScreen(),
     ),
-
   ];
 }

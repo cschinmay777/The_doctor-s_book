@@ -221,7 +221,15 @@ class AddExistingNewRecord extends StatelessWidget {
                             fontStyle:
                                 TextFormFieldFontStyle.UrbanistRegular14),
                         //Symptoms
-                        SymptomsContainer(),
+                        // SymptomsContainer(),
+                        CustomTextFormField(
+                            width: 380,
+                            focusNode: FocusNode(),
+                            controller: controller.symptomsController,
+                            hintText: "Symptoms",
+                            margin: getMargin(top: 24),
+                            fontStyle:
+                                TextFormFieldFontStyle.UrbanistRegular14),
                         CustomTextFormField(
                             width: 380,
                             focusNode: FocusNode(),
@@ -294,8 +302,7 @@ class AddExistingNewRecord extends StatelessWidget {
         context: Get.context!,
         initialDate: controller.add_new_record_ModelObj.value.selectedLabelTxt,
         firstDate: DateTime(1970),
-        lastDate: DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day));
+        lastDate: DateTime(2024));
     if (dateTime != null) {
       controller.add_new_record_ModelObj.value.selectedLabelTxt = dateTime;
       controller.add_new_record_ModelObj.value.labelTxt.value =
@@ -307,35 +314,35 @@ class AddExistingNewRecord extends StatelessWidget {
     Get.back();
   }
 
-  Widget SymptomsContainer() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          padding: EdgeInsetsDirectional.all(10),
-          margin: getMargin(top: 10, bottom: 10),
-          child: Text(
-            'Symptoms',
-            style: AppStyle.txtUrbanistRomanBold24.copyWith(
-              color: ColorConstant.whiteA700,
-            ),
-          ),
-        ),
-        // ListView.separated(
-        //   shrinkWrap: true,
-        //   physics: const ScrollPhysics(),
-        //   itemBuilder: (context, index) {
-        //     return Column(
-        //       children: [
-        //         // SymptomUI(index),
-        //       ],
-        //     );
-        //   },
-        //   separatorBuilder: (context, index) => const Divider(),
-        //   itemCount: sym!.length,
-        // )
-      ],
-    );
-  }
+  // Widget SymptomsContainer() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     children: [
+  //       Container(
+  //         padding: EdgeInsetsDirectional.all(10),
+  //         margin: getMargin(top: 10, bottom: 10),
+  //         child: Text(
+  //           'Symptoms',
+  //           style: AppStyle.txtUrbanistRomanBold24.copyWith(
+  //             color: ColorConstant.whiteA700,
+  //           ),
+  //         ),
+  //       ),
+  //       // ListView.separated(
+  //       //   shrinkWrap: true,
+  //       //   physics: const ScrollPhysics(),
+  //       //   itemBuilder: (context, index) {
+  //       //     return Column(
+  //       //       children: [
+  //       //         // SymptomUI(index),
+  //       //       ],
+  //       //     );
+  //       //   },
+  //       //   separatorBuilder: (context, index) => const Divider(),
+  //       //   itemCount: sym!.length,
+  //       // )
+  //     ],
+  //   );
+  // }
 }

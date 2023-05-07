@@ -7,7 +7,7 @@ class Patient {
   String? age;
   List? records;
   String? next;
-  //String? phone;
+  String? phone;
 
   Patient({this.name, this.age, this.records, this.next});
 
@@ -15,7 +15,7 @@ class Patient {
     name = json["name"];
     age = json["age"];
     next = json["next"];
-    //phone = json["phone"];
+    phone = json["phone"];
     // next = (json["next"] as Timestamp).toDate();
     records = json["records"] != null
         ? (json["records"] as List<dynamic>?)!
@@ -30,7 +30,7 @@ class Patient {
     data["age"] = age;
     data["records"] = records;
     data["next"] = next;
-    //data["phone"] = phone;
+    data["phone"] = phone;
     return data;
   }
 }

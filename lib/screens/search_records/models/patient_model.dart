@@ -3,6 +3,7 @@ import 'patient_record_model.dart';
 class Patient {
   String? name;
   String? age;
+
   List<PatientRecord>? records;
 
   Patient({this.name, this.age, this.records});

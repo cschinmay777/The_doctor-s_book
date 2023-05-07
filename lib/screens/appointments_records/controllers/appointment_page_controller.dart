@@ -14,6 +14,7 @@ class AppointmentPageController extends GetxController {
   Rx<AppointmentPageModel> appointmentPageModelObj = AppointmentPageModel().obs;
 
   var searchList = <Patient>[].obs;
+  List pat = [];
 
   @override
   void onReady() {
@@ -33,6 +34,7 @@ class AppointmentPageController extends GetxController {
           .map((e) => Patient.fromJson(e))
           .toList();
       searchList.value = patientList;
+      pat = patientList;
 
       // print("hell ${(patientList[0].next).toString()}");
       return patientList;

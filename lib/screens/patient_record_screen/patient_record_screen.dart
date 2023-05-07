@@ -14,20 +14,25 @@ class PatientRecordScreen extends StatelessWidget {
   final Patient patient;
   final int index;
   // final List lst;
-  const PatientRecordScreen(this.patient, this.index, {super.key});
-
+  PatientRecordScreen(this.patient, this.index, {super.key});
+  List pres = [];
   // String capitalCase(String text) {
+  //
   //   return text
-  //       .split(' ')
+  //       .split(',')
   //       .map((word) => word[0].toUpperCase() + word.substring(1))
   //       .join(' ');
   // }
+  List<String> PrescriptionList(String text) {
+    return text.split(',');
+  }
 
   @override
   Widget build(BuildContext context) {
     // var d = Get.arguments();
     // print(Get.arguments);
-    print(index);
+    // print(pres);
+    // print(index);
     log(patient.records!.length.toString());
     return Scaffold(
       backgroundColor: ColorConstant.gray900,
@@ -170,16 +175,23 @@ class PatientRecordScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        patient.records![index].prescription!,
+                                    children: List.generate(
+                                      PrescriptionList(
+                                              "${patient.records![index].prescription} ")
+                                          .length,
+                                      (index1) => Text(
+                                        PrescriptionList(
+                                                "${patient.records![index].prescription} ")[
+                                            index1],
+                                        // capitalCase(
+                                        //     '${index1 + 1}. ${patient.records![index].symptoms![index1]}'),
                                         style: AppStyle.txtUrbanistRomanBold18
                                             .copyWith(
                                           fontSize: getFontSize(20),
                                           color: ColorConstant.gray400,
                                         ),
                                       ),
-                                    ],
+                                    ),
                                     // children: List.generate(
                                     //   patient
                                     //       .records![index].prescription!.length,
