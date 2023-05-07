@@ -75,13 +75,36 @@ _Here doctors can communicate with other doctors regarding medical innovations, 
 <img src="https://user-images.githubusercontent.com/80617080/227754442-706b6d0c-c3bf-4ff4-9a51-586e96b29f17.jpg" width="250" height="500"/>
   </p>
   
-  ### Home Screen
-  
-  ### Services Screens
+
+### Home Screens
+  <p align="center">
+<img src="https://user-images.githubusercontent.com/80617080/227758235-03b83ffc-aa28-4560-9a86-5909a8f8eb4d.jpeg" width="250" height="500"/>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<img src="https://user-images.githubusercontent.com/80617080/227758249-1035d703-c8af-4233-89bf-881ce1744164.jpeg" width="250" height="500"/>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<img src="https://user-images.githubusercontent.com/80617080/227758327-0693d602-5fe6-4317-b459-f7189acb16c7.jpeg" width="250" height="500"/>
+  </p>
+
+
+  ### Adding Records
+  <p align="center">
+<img src="https://user-images.githubusercontent.com/80617080/227758499-5c0ad91a-3883-44ed-8ca1-7567d894851e.jpeg" width="250" height="500"/> 
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<img src="https://user-images.githubusercontent.com/80617080/227758519-257b0c81-7c38-4f25-a5ef-e4f11f99cd5c.jpeg" width="250" height="500"/> 
+  </p>
+
+  ### Record Screens
+  <p align="center">
+<img src="https://user-images.githubusercontent.com/80617080/227759160-0bcfe1f0-89fa-4962-9bf2-37a550a067c0.jpeg" width="250" height="500"/>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<img src="https://user-images.githubusercontent.com/80617080/227759174-e9fb7735-70ae-46ad-9342-625fa9acd794.jpeg" width="250" height="500"/>
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<img src="https://user-images.githubusercontent.com/80617080/227759189-f658a976-4e42-45ec-90ed-a1d952560f5f.jpeg" width="250" height="500"/>
+  </p>
   
 ## Demo
 
-[SampleVideo1280x7205mb.zip](https://github.com/cschinmay777/The_doctor-s_book/files/11070776/SampleVideo1280x7205mb.zip)
+https://youtu.be/qba6loqoFgU
 
 ## Run Locally
 
